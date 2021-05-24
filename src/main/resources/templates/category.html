@@ -1,0 +1,65 @@
+<div class="card-body">
+								              <div class="tab-content">
+										<div class="tab-pane active" id="idea-new">
+											<div class="container">
+												<form th:action="@{/register_idea}" method="POST" th:object="${idea}">
+													<div class="row">
+														<div class="col">
+															<div class="form-group">
+																<label for="title">Title</label>
+																<input type="text" class="form-control"
+																	th:field="*{ideaTitle}" required>
+															</div>
+															<div class="form-group">
+																<label for="category">Category</label>
+																<select  class="custom-select" th:field="*{categoryId}"
+																	required>
+																	<option th:each="category :${categories}" th:value="${category.id}" th:text="${category.categoryName}"/>																	
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="title">Description</label>
+																<textarea class="form-control" rows="3"
+																	th:field="*{ideaDescription}" required></textarea>
+															</div>
+															<div class="form-group">
+																<label for="priority">Priority</label>
+																<select class="custom-select" th:field="*{priorityId}"
+																	required>
+																	<option th:each ="priority:${priorities}" th:value="${priority.id}" th:text="${priority.priorityName}"/>
+																	
+																</select>
+															</div>
+
+														</div>
+														<div class="col">
+															<div class="form-group">
+																<label for="Executive Summary">Executive Summary</label>
+																<textarea class="form-control" rows="3"
+																	th:field="*{ideaExecutiveSummary}"
+																	required></textarea>
+															</div>
+															<div class="form-group">
+																<label for="background Description">Background
+																	Description</label>
+																<textarea class="form-control" rows="3"
+																	th:field="*{ideaBackgroundDescription}"
+																	required></textarea>
+															</div>
+															<div class="form-group">
+																<label for="submission date">Date of submission</label>
+																<input type="date" class="form-control"
+																	th:field="*{dateOfSubmission}" required>
+															</div>
+															<div class="form-group text-center">
+																<button type="submit"
+																	class="btn btn-primary">Save</button>
+															</div>
+														</div>
+													</div>
+												</form>
+
+											</div>
+										</div>
+									</div>
+								</div>

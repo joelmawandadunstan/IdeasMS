@@ -5,22 +5,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.flyhub.ideamanagementsystem.entity.Role;
 
+import com.flyhub.ideamanagementsystem.entity.Role;
 import com.flyhub.ideamanagementsystem.entity.User;
 
 public class CustomUserDetails implements UserDetails {
+	private static final long serialVersionUID = 1L;
 	
 	private User user;
 	
 	
 
 	public CustomUserDetails(User user) {
-		super();
+		
 		this.user = user;
 	}
 
@@ -71,6 +71,11 @@ public class CustomUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	public Long getuser_id() {
+		// TODO Auto-generated method stub
+		return user.getId();
 	}
 	
 	public String getFullName() {

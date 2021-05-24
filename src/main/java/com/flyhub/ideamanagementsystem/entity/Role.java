@@ -12,24 +12,35 @@ import javax.persistence.Table;
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "role_id")
 	private Long id;
-	
+
 	@Column(nullable = false, length = 45)
 	private String name;
-	
+
+	private boolean status = true;
+
 	public Role() {
-		
+
 	}
 
 	public Role(String name) {
 		this.name = name;
 	}
-	
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public Role(Long id) {
 		this.id = id;
-		
+
 	}
-	
+
 	public Role(Long id, String name) {
 		this.id = id;
 		this.name = name;
@@ -55,7 +66,5 @@ public class Role {
 	public String toString() {
 		return this.name;
 	}
-	
-	
 
 }
