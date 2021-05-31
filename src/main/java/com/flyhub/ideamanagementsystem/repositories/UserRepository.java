@@ -11,8 +11,8 @@ import com.flyhub.ideamanagementsystem.entity.Idea;
 import com.flyhub.ideamanagementsystem.entity.User;
 
 @Configuration
-//public interface UserRepository extends JpaRepository<User, Long> {
-public interface UserRepository extends PagingAndSortingRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
+//public interface UserRepository extends PagingAndSortingRepository<User, Long>{
 	
 	@Query("SELECT u FROM User u WHERE u.email = ?1")
 	User findByEmail(String email);

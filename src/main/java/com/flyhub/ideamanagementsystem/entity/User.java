@@ -151,6 +151,8 @@ public class User {
 		this.roles.add(role);
 	}
 	
+	
+	
 //	public User(String email, String password, String firstName, String lastName, Set<Role> roles) {
 //		super();
 //		this.email = email;
