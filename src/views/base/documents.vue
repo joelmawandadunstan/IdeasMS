@@ -1,0 +1,143 @@
+<template>
+  <CCard>
+    <h1>List Of Documents</h1>
+    <CDataTable
+      :items="documents"
+      :fields="fields"
+      striped
+      caption="Documents Table"
+    >
+      <template #Actions="{ item }">
+        <td class="py-2">
+          <CButton
+            color="info"
+            variant="outline"
+            square
+            size="sm"
+            @click="
+              {
+                warningModal = true;
+                propagateDocument(item);
+              }
+            "
+          >
+            Edit
+          </CButton>
+          <CButton
+            color="danger"
+            variant="outline"
+            square
+            size="sm"
+            @click="deleteDocument(item)"
+          >
+            Delete
+          </CButton>
+          <CButton
+            color="success"
+            variant="outline"
+            square
+            size="sm"
+            @click="toggleDetails(item)"
+          >
+            Attachment
+          </CButton>
+
+          <CButton
+            color="warning"
+            variant="outline"
+            square
+            size="sm"
+            @click="toggleDetails(item)"
+          >
+            AddNotes
+          </CButton>
+        </td>
+      </template>
+    </CDataTable>
+    <div>
+      <CModal title="Update Document" color="success" :show.sync="warningModal">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">file Upload</label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+            />
+          </div>
+        </form>
+
+        <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
+        <template #footer>
+          <CButton type="submit" color="success">Cancel</CButton>
+          <CButton type="submit" color="success" @click="updateDocument"
+            >Edit</CButton
+          >
+        </template>
+      </CModal>
+    </div>
+  </CCard>
+</template>
+
+<script>
+//import usersData from "../users/UsersData";
+import axios from "axios";
+
+export default {
+  name: "documents",
+  components: {},
+  data() {
+    return {
+      documents: [],
+      fields: ["id", "name", { key: "Actions" }],
+      warningModal: false,
+      updateForm: {
+        id: "",
+        name: "",
+      },
+    };
+  },
+  methods: {
+    deleteDocument(item) {
+      let deletingDocument = item.id;
+      console.log(deletingDocument);
+
+      axios
+        .delete("/api/v1/documents/delete/" + deletingDocument)
+        .then((response) => {
+          // Event.fire("updated");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    propagateDocument(item) {
+      this.updateForm.name = item.name;
+      this.updateForm.id = item.id; //Do i have to update the id
+    },
+    updateDocument() {
+      axios
+        .patch("/api/v1/documents/edit/" + this.updateForm.id, this.updateForm)
+
+        .then((response) => {
+          // Event.fire("updated");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  mounted() {
+    axios
+      .get("/api/v1/documents")
+      .then((response) => {
+        this.documents = response.data;
+        console.log(this.documents);
+      })
+      .catch((error) => console.log(error));
+    //   .then(data =>this.ideas = data)
+  },
+};
+// response.json()
+// .
+</script>
