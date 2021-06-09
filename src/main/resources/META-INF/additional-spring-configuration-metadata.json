@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "flyhub.ideamanagementsystem.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'flyhub.ideamanagementsystem.jwtSecret'"
+  },
+  {
+    "name": "flyhub.ideamanagementsystem.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'flyhub.ideamanagementsystem.jwtSecret'"
+  },
+  {
+    "name": "flyhub.ideamanagementsystem.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'flyhub.ideamanagementsystem.jwtExpirationMs'"
+  },
+  {
+    "name": "com.flyhub.ideamanagementsystem.app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'com.flyhub.ideamanagementsystem.app.jwtSecret'"
+  },
+  {
+    "name": "com.flyhub.ideamanagementsystem.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'com.flyhub.ideamanagementsystem.app.jwtExpirationMs'"
+  }
+]}

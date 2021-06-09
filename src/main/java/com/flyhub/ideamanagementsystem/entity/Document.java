@@ -62,6 +62,11 @@ public class Document {
 		
 	}
 
+	//This is from the Article
+	public Document(String fileName, String contentType, byte[] bytes) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

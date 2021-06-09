@@ -46,7 +46,10 @@ import javax.persistence.Table;
 		@OneToMany(mappedBy = "idea", orphanRemoval=true)
 		private List<Document> document;
 		
-		
+		//constructor
+//		public Idea() {
+//				
+//			}
 	
 		public User getUser() {
 			return user;

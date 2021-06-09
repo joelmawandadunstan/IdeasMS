@@ -1,25 +1,19 @@
 package com.flyhub.ideamanagementsystem;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.flyhub.ideamanagementsystem.entity.Role;
 import com.flyhub.ideamanagementsystem.entity.User;
 
 public class CustomUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-
+	
 	private String username;
 
 	private String email;
@@ -45,8 +39,8 @@ public class CustomUserDetails implements UserDetails {
 				.collect(Collectors.toList());
 
 		return new CustomUserDetails(
-				user.getId(), 
-				user.getFirstName(), 
+				user.getId(),
+				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(), 
 				authorities);
@@ -169,8 +163,8 @@ public class CustomUserDetails implements UserDetails {
 		return user.getId();
 	}
 	
-	public String getFullName() {
-		return user.getFirstName() + "" + user.getLastName();
-	}
+//	public String getFullName() {
+//		return user.getFirstName() + "" + user.getLastName();
+//	}
 
 }

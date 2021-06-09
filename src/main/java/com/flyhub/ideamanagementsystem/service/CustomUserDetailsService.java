@@ -4,25 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.flyhub.ideamanagementsystem.CustomUserDetails;
 import com.flyhub.ideamanagementsystem.entity.User;
 import com.flyhub.ideamanagementsystem.repositories.UserRepository;
-  
+
+@Service 
 public class CustomUserDetailsService implements UserDetailsService {
-  
-  // this service is to enable us load a user by username from the db table
-  
+    
 	  @Autowired 
 	  private UserRepository userRepo;
 	  
 	  @Override 
-	  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException { 
-		  User user = userRepo.findByEmail(email); 
+	  @Transactional
+	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
+		  User user = userRepo.findByUsername(username)
+				  .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+
 		  if (user== null) { 
 			  throw new UsernameNotFoundException("User not found");
 			  } 
-		  return new CustomUserDetails(user); 
+		  return CustomUserDetails.build(user);
 	  }
 	  
   }
