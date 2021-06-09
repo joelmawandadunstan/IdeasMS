@@ -6,16 +6,18 @@
           <CCardGroup>
             <CCard class="p-4">
               <CCardBody>
-                <CForm>
+                <CForm @submit.prevent="handleLogin">
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <CInput
+                    v-model="loginDetails.username"
                     placeholder="Username"
                     autocomplete="username email"
                   >
                     <template #prepend-content><CIcon name="cil-user"/></template>
                   </CInput>
                   <CInput
+                    v-model="loginDetails.password"
                     placeholder="Password"
                     type="password"
                     autocomplete="curent-password"
@@ -24,7 +26,7 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4">Login</CButton>
+                      <CButton  type="submit" color="primary" class="px-4">Login</CButton>
                     </CCol>
                     <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0">Forgot password?</CButton>
@@ -60,7 +62,50 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+import axios from "axios";
 export default {
-  name: 'Login'
+  name: 'Login',
+   data() {
+    return {
+      loginDetails:{ username: "",
+      password: "",}
+    };
+  },
+ /*  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  }, */
+ /*  created() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+    }
+  }, */
+   methods: {
+     ...mapActions(["login"]),
+   /*  addUser() {
+      axios({
+        method: "POST",
+        url: "api/v1/auth/signin",
+        data: {
+          username: this.username,
+          password: this.password,
+        }
+      })
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+    }, */
+     handleLogin() {
+      this.loading = true;
+      this.login(this.loginDetails)
+      .then(() => {
+            if (this.getLogginStatus == true) {
+              return this.$router.push("/");
+            }
+          });
+     }
+  },
+  computed: mapGetters(["getLogginStatus"])
 }
 </script>

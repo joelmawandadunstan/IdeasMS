@@ -9,21 +9,10 @@
                 <h1>Register</h1>
                 <p class="text-muted">Create your account</p>
                 <CInput
-                  v-model="firstName"
-                  placeholder="First Name"
+                  v-model="username"
+                  placeholder="User Name"
                   type="text"
-                  autocomplete="firstName"
-                >
-                  <template #prepend-content
-                    ><CIcon name="cil-user"
-                  /></template>
-                </CInput>
-
-                <CInput
-                  v-model="lastName"
-                  placeholder="Last Name"
-                  type="text"
-                  autocomplete="lastName"
+                  autocomplete="username"
                 >
                   <template #prepend-content
                     ><CIcon name="cil-user"
@@ -41,7 +30,7 @@
                   <CCol sm="4">
                     <CSelect label="Gender" 
                     :options="gender"
-                    :value.sync="gender_id" />
+                    :value.sync="genderId" />
                   </CCol>
 
                   <CCol sm="4">
@@ -101,13 +90,12 @@ export default {
   name: "Register",
   data() {
     return {
-      firstName: "",
-      lastName: "",
+      username: "",
       email: "",
       password: "",
-      gender_id: '',
-      prefix_id: '',
-      postfix_id: '',
+      genderId: '',
+      prefixId: '',
+      postfixId: '',
       gender: [],
       prefix: [],
       postfix: [],
@@ -159,14 +147,13 @@ export default {
       // )
       axios({
         method: "POST",
-        url: "api/v1/users",
+        url: "api/v1/auth/signup",
         data: {
-          firstName: this.firstName,
-          lastName: this.lastName,
+          username: this.username,
           email: this.email,
-          genderId: this.gender_id,
-          prefixId: this.prefix_id,
-          postfixId: this.postfix_id,
+          genderId: this.genderId,
+          prefixId: this.prefixId,
+          postfixId: this.postfixId,
           password: this.password,
         }
       })

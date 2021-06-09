@@ -59,9 +59,9 @@
     <CDropdownItem>
       <CIcon name="cil-shield-alt" /> Lock Account
     </CDropdownItem>
-    <CDropdownItem>
+    <CLink to="pages/login">
       <CIcon name="cil-lock-locked" /> Logout
-    </CDropdownItem>
+    </CLink>
   </CDropdown>
 </template>
 
@@ -72,7 +72,12 @@ export default {
     return { 
       itemsCount: 42
     }
+  },
+ /*  methods:{
+    async onLogout(){
+    await this.$router.push("/pages/login");
   }
+} */
 }
 </script>
 

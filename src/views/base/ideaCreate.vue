@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <h1>Create Ideas</h1>
+  <div>
+    <h1>Create Ideas</h1>
     <CRow>
       <CCol md="12">
         <CCard>
-          <CCardHeader>
-            <strong>Create Your Ideas</strong> Here
-          </CCardHeader>
+          <CCardHeader> <strong>Create Your Ideas</strong> Here </CCardHeader>
           <CCardBody>
             <CForm @submit.prevent="addIdea">
               <CInput
@@ -16,15 +14,15 @@
                 placeholder="Idea title"
                 horizontal
               />
-            
-                <CSelect
+
+              <CSelect
                 label="Category"
                 horizontal
                 :options="category"
                 placeholder="category"
               />
 
-                <CSelect
+              <CSelect
                 label="Priority"
                 horizontal
                 :options="priority"
@@ -37,7 +35,7 @@
                 type="date"
                 horizontal
               />
-              
+
               <CTextarea
                 v-model="idea_description"
                 label="Idea Description"
@@ -46,64 +44,63 @@
                 rows="9"
               />
 
-             
-                <CButton type="submit" size="sm" color="primary"><CIcon name="cil-check-circle"/> Submit</CButton>
+              <CButton type="submit" size="sm" color="primary"
+                ><CIcon name="cil-check-circle" /> Submit</CButton
+              >
             </CForm>
           </CCardBody>
-          <CCardFooter>
-            
-          </CCardFooter>
+          <CCardFooter> </CCardFooter>
         </CCard>
-        
       </CCol>
-      
     </CRow>
-    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  name: 'ideaCreate',
-  data (){
+  name: "ideaCreate",
+  data() {
     return {
-      idea_title: '',
-      idea_description:'',
-      createDate:'',
+      idea_title: "",
+      idea_description: "",
+      createDate: "",
       category: [],
-      priority: []
-      
-    }
+      priority: [],
+    };
   },
   methods: {
-    getLookUps(){
-    const reqOne = axios.get('/api/v1/category')
-    const reqTwo = axios.get('/api/v1/priority')
-    
-  axios.all([reqOne, reqTwo]).then(axios.spread((a, b) =>{
-    this.category = a.data;
-    this.priority = b.data;
-  }))
+    getLookUps() {
+      const reqOne = axios.get("/api/v1/category");
+      const reqTwo = axios.get("/api/v1/priority");
 
+      axios.all([reqOne, reqTwo]).then(
+        axios.spread((a, b) => {
+          this.category = a.data;
+          this.priority = b.data;
+        })
+      );
     },
-    
-    addIdea(){
-      axios({
-        method: 'POST',
-        url:"api/v1/ideas",
-        data: {
-          idea_title: this.idea_title,
-          idea_description: this.idea_description,
-          createDate: this.createDate
-          }
-      }).then((response) => console.log(response))
-    .catch(error => console.log(error))
-    }
 
+    addIdea() {
+      const data = {
+        idea_title: this.idea_title,
+        idea_description: this.idea_description,
+        createDate: this.createDate,
+      };
+      axios
+        .post(`api/v1/ideas`, data, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+    },
   },
-  created(){
+  created() {
     this.getLookUps();
-  }
-}
-
+  },
+};
 </script>

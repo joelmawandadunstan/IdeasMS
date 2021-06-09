@@ -9,7 +9,17 @@ import store from './store'
 Vue.config.performance = true
 Vue.use(CoreuiVue)
 Vue.prototype.$log = console.log.bind(console)
-
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.getLogginStatus) {
+      next()
+      return
+    }
+    next('/pages/login')
+  } else {
+    next()
+  }
+})
 new Vue({
   el: '#app',
   router,
