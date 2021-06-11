@@ -15,12 +15,12 @@ import com.flyhub.ideamanagementsystem.service.PriorityServices;
 
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/priority")
 public class PriorityController {
 	
 @Autowired private PriorityServices priorityService;
 	
-	@GetMapping("priority")
+	@GetMapping
 	public List<Priority> viewPriorityList() {
 		
 		return priorityService.listAll();

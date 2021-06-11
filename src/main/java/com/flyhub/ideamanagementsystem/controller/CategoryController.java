@@ -15,12 +15,12 @@ import com.flyhub.ideamanagementsystem.service.CategoryServices;
 
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/category")
 public class CategoryController {
 	
 	@Autowired private CategoryServices categoryService;
 	
-	@GetMapping("category")
+	@GetMapping
 	public List<Category> viewCategoryList() {
 		
 		return categoryService.listAll();

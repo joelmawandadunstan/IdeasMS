@@ -10,15 +10,15 @@ import com.flyhub.ideamanagementsystem.service.MessageServices;
 
 //@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/message")
 public class MessageController {
 	
 	@Autowired	
 	private MessageServices messageServices;
-	@GetMapping("message")
+	@GetMapping
 	public String ShowMessage() {
 		//messageServices.findMessage(message);
-		return "We have successfully connected frontend to backend";
+		return "Put Your Ideas to Life";
 		
 		}
 
