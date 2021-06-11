@@ -36,13 +36,13 @@
                   <CCol sm="4">
                     <CSelect label="Prefix" 
                     :options="prefix"
-                    :value.sync="prefix_id" />
+                    :value.sync="prefixId" />
                   </CCol>
 
                   <CCol sm="4">
                     <CSelect label="Postfix" 
                     :options="postfix" 
-                    :value.sync="postfix_id"/>
+                    :value.sync="postfixId"/>
                   </CCol>
                 </CRow>
 
@@ -157,8 +157,9 @@ export default {
           password: this.password,
         }
       })
-        .then((response) => console.log(response.data))
-        .catch((error) => console.log(error));
+        // .then((response) => console.log(response.data))
+        // .catch((error) => console.log(error));
+        this.$router.push('/pages/login')
     },
   },
   created() {

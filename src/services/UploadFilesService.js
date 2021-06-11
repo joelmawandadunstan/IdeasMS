@@ -8,14 +8,23 @@ class UploadFilesService {
 
     return axios.post("api/v1/documents", formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        //"content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       onUploadProgress
     });
   }
 
   getFiles() {
-    return axios.get("api/v1/documents");
+    return axios.get("api/v1/documents",
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        //"content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
   }
 }
 

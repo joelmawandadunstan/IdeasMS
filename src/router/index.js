@@ -75,7 +75,7 @@ function configRoutes () {
   return [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/pages/login',
       name: 'Home',
       component: TheContainer,
       meta: {requiresAuth:true},

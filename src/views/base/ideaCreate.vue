@@ -75,9 +75,19 @@ export default {
       const reqTwo = axios.get("/api/v1/priority");
 
       axios.all([reqOne, reqTwo]).then(
-        axios.spread((a, b) => {
-          this.category = a.data;
-          this.priority = b.data;
+        axios.spread((category, priority) => {
+           this.category = (category.data).map((singleCategory) => {
+            return {
+              value: singleCategory.id,
+              label: singleCategory.categoryName,
+            };
+          });
+           this.priority = (priority.data).map((singlePriority) => {
+            return {
+              value: singlePriority.id,
+              label: singlePriority.priorityName,
+            };
+          });
         })
       );
     },

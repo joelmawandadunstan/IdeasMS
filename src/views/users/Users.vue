@@ -11,16 +11,12 @@
             :fields="fields"
             :items-per-page="5"
             clickable-rows
-            :active-page="activePage"
-            @row-clicked="rowClicked"
             :pagination="{ doubleArrows: false, align: 'center' }"
-            @page-change="pageChange"
           >
             <template #Actions="{ item }">
               <td class="py-2">
                 <CButton
                   color="info"
-                  variant="outline"
                   square
                   size="sm"
                   @click="
@@ -31,10 +27,9 @@
                   "
                 >
                   Edit
-                </CButton>
+                </CButton>&#160;
                 <CButton
                   color="danger"
-                  variant="outline"
                   square
                   size="sm"
                   @click="deleteUser(item)"
@@ -54,20 +49,12 @@
               :show.sync="warningModal"
             >
               <CInput
-                v-model="updateForm.firstName"
-                label="firstName"
-                placeholder="Content..."
+                v-model="updateForm.username"
+                label="Username"
+                placeholder="username..."
                 type="text"
-                autocomplete="firstName"
+                autocomplete="username"
               />
-              <CInput
-                v-model="updateForm.lastName"
-                label="lastName"
-                placeholder="Content..."
-                type="text"
-                autocomplete="lastName"
-              />
-
               <CInput
                 v-model="updateForm.email"
                 placeholder="email"
@@ -125,11 +112,13 @@ export default {
   data() {
     return {
       users: [],
+      gender: [],
+      prefix: [],
+      postfix: [],
       fields: [
         "id",
         "email",
-        "firstName",
-        "lastName",
+        "username",
         "role",
         { key: "Actions" },
       ],
@@ -137,15 +126,12 @@ export default {
       updateForm: {
         id: "",
         email: "",
-        firstName: "",
-        lastName: "",
+        username:"",
         genderId: "",
         prefixId: "",
-        postfixId: ""
+        postfixId: "",
       },
-      // genderId: [],
-      // prefixId: [],
-      // postfixId: [],
+      
     };
   },
   /*  watch: {
@@ -174,8 +160,7 @@ export default {
     },
     propagateUser(item) {
       this.updateForm.email = item.email;
-      this.updateForm.firstName = item.firstName;
-      this.updateForm.lastName = item.lastName;
+      this.updateForm.username = item.username;
       this.updateForm.id = item.id;
       this.updateForm.genderId = item.genderId;
       this.updateForm.prefixId = item.prefixId;
@@ -199,7 +184,7 @@ export default {
 
       axios.all([reqOne, reqTwo, reqThree]).then(
         axios.spread((gender, prefix, postfix) => {
-          this.gender = gender.data.map((singleCategory) => {
+          this.gender = gender.data.map((singleGender) => {
             return {
               value: singleGender.id,
               label: singleGender.genderName,
@@ -208,7 +193,7 @@ export default {
           this.prefix = prefix.data.map((singlePrefix) => {
             return {
               value: singlePrefix.id,
-              label: singlePriority.prefixName,
+              label: singlePrefix.prefixName,
             };
           });
           this.postfix = postfix.data.map((singlePostfix) => {
@@ -222,14 +207,19 @@ export default {
     },
   },
   mounted() {
-    axios
-      .get("/api/v1/users")
-      .then((response) => {
-        this.users = response.data;
-        console.log(this.users);
-      })
-      .catch((error) => console.log(error));
-    //   .then(data =>this.ideas = data)
+    axios.get("/api/v1/users", {
+      headers: {
+        //"Content-Type": "multipart/form-data",
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+    .then((response) => {
+      this.users = response.data;
+      console.log(this.users);
+    })
+    .catch((error) => console.log(error));
+    
   },
   created() {
     this.getLookUps();

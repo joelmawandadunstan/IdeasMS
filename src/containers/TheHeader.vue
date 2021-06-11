@@ -29,6 +29,14 @@
           Settings
         </CHeaderNavLink>
       </CHeaderNavItem>
+      <CHeaderNavItem class="px-3">
+        <h3 v-if="user">
+          Hi, {{user.username}}
+        </h3>
+        <h3 v-if="!user">
+          You are not loggen in!
+        </h3>
+      </CHeaderNavItem>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="d-md-down-none mx-2">
@@ -56,11 +64,32 @@
 
 <script>
 import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
+import axios from 'axios'
 
 export default {
   name: 'TheHeader',
   components: {
     TheHeaderDropdownAccnt
-  }
+  },
+  data(){
+    return{
+      user: null
+    }
+  },
+  mounted() {
+    axios.get("/api/v1/users", {
+      headers: {
+        //"Content-Type": "multipart/form-data",
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+    .then((response) => {
+      this.users = response.data;
+      console.log(this.users);
+    })
+    .catch((error) => console.log(error));
+    
+  },
 }
 </script>

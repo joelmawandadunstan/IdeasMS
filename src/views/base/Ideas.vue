@@ -1,40 +1,46 @@
 <template>
   <CCard>
     <h1>List Of Ideas</h1>
-    <CDataTable :items="ideas" :fields="fields" striped caption="Idea Table">
+    <CDataTable 
+    :items="ideas" 
+    :fields="fields" 
+    striped caption="Idea Table"
+    :items-per-page="5"
+    :pagination="{ doubleArrows: true, align: 'center' }"
+
+    >
       <template #Actions="{ item }">
         <td class="py-2">
           <CButton
             color="info"
-            variant="outline"
             square
             size="sm"
-            @click="{warningModal = true; propagateIdea(item);}"
+            @click="
+              {
+                warningModal = true;
+                propagateIdea(item);
+              }
+            "
           >
             Edit
-          </CButton>
+          </CButton>&#160;
           <CButton
             color="danger"
-            variant="outline"
             square
             size="sm"
             @click="deleteIdea(item)"
           >
             Delete
           </CButton>
-          <CButton
-            color="success"
-            variant="outline"
-            square
-            size="sm"
-            @click="toggleDetails(item)"
-          >
-            Attachment
+
+          <CButton >
+            <router-link class="btn btn-success" to="/base/UploadFiles" role="button"
+              >Attachment</router-link
+            >
           </CButton>
 
           <CButton
             color="warning"
-            variant="outline"
             square
             size="sm"
             @click="toggleDetails(item)"
@@ -85,7 +91,8 @@
         <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
         <template #footer>
           <CButton type="submit" color="success">Cancel</CButton>
-          <CButton type="submit" color="success" @click="updateIdea">Edit</CButton
+          <CButton type="submit" color="success" @click="updateIdea"
+            >Edit</CButton
           >
         </template>
       </CModal>
@@ -103,6 +110,8 @@ export default {
   data() {
     return {
       ideas: [],
+      category: [],
+      priority: [],
       fields: ["id", "idea_title", "idea_description", { key: "Actions" }],
       warningModal: false,
       updateForm: {
@@ -112,9 +121,7 @@ export default {
         categoryId: "",
         priorityId: "",
       },
-    //   categoryId: [],
-    //   priorityId: [],
-     };
+    };
   },
   methods: {
     deleteIdea(item) {
@@ -134,8 +141,8 @@ export default {
       this.updateForm.idea_title = item.idea_title;
       this.updateForm.idea_description = item.idea_description;
       this.updateForm.id = item.id;
-      this.updateForm.category = item.category;
-      this.updateForm.priority = item.priority;
+      this.updateForm.categoryId = item.categoryId;
+      this.updateForm.priorityId = item.priorityId;
     },
     updateIdea() {
       axios
@@ -172,13 +179,18 @@ export default {
   },
   mounted() {
     axios
-      .get("/api/v1/ideas")
+      .get("/api/v1/ideas", {
+        headers: {
+          //"Content-Type": "multipart/form-data",
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((response) => {
         this.ideas = response.data;
         console.log(this.ideas);
       })
       .catch((error) => console.log(error));
-    //   .then(data =>this.ideas = data)
   },
   created() {
     this.getLookUps();

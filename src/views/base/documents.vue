@@ -128,13 +128,14 @@ export default {
     },
   },
   mounted() {
-    axios
-      .get("/api/v1/documents")
-      .then((response) => {
-        this.documents = response.data;
-        console.log(this.documents);
-      })
-      .catch((error) => console.log(error));
+    axios.get("/api/v1/documents", {
+      headers: {
+        "Content-Type": "multipart/form-data",
+       // "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
+    //  .catch((error) => console.log(error));
     //   .then(data =>this.ideas = data)
   },
 };

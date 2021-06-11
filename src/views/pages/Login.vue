@@ -14,7 +14,9 @@
                     placeholder="Username"
                     autocomplete="username email"
                   >
-                    <template #prepend-content><CIcon name="cil-user"/></template>
+                    <template #prepend-content
+                      ><CIcon name="cil-user"
+                    /></template>
                   </CInput>
                   <CInput
                     v-model="loginDetails.password"
@@ -22,36 +24,51 @@
                     type="password"
                     autocomplete="curent-password"
                   >
-                    <template #prepend-content><CIcon name="cil-lock-locked"/></template>
+                    <template #prepend-content
+                      ><CIcon name="cil-lock-locked"
+                    /></template>
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton  type="submit" color="primary" class="px-4">Login</CButton>
+                      <CButton type="submit" color="warning" class="px-4"
+                        >Login</CButton
+                      >
                     </CCol>
                     <CCol col="6" class="text-right">
-                      <CButton color="link" class="px-0">Forgot password?</CButton>
-                      <CButton color="link" class="d-lg-none">Register now!</CButton>
+                      <CButton color="link" class="px-0"
+                        >Forgot password?</CButton
+                      >
+                      <CButton color="link" class="d-lg-none"
+                        >Register now!</CButton
+                      >
                     </CCol>
                   </CRow>
                 </CForm>
               </CCardBody>
             </CCard>
             <CCard
-              color="primary"
+              color="warning"
               text-color="white"
               class="text-center py-5 d-md-down-none"
               body-wrapper
             >
               <CCardBody>
-                <h2>Sign up</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <CButton
+                <h1>IDEA MANAGEMENT SYSTEM</h1>
+                <h3>Put your ideas to life</h3>
+                <br />
+                <CLink to="register">
+                   Register Now!
+                </CLink>
+                <!-- <a class="btn btn-success" href="pages/register" role="button"
+                  >Register Now!</a
+                > -->
+                <!-- <CButton
                   color="light"
                   variant="outline"
                   size="lg"
                 >
                   Register Now!
-                </CButton>
+                </CButton> -->
               </CCardBody>
             </CCard>
           </CCardGroup>
@@ -62,29 +79,28 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
 export default {
-  name: 'Login',
-   data() {
+  name: "Login",
+  data() {
     return {
-      loginDetails:{ username: "",
-      password: "",}
+      loginDetails: { username: "", password: "" },
     };
   },
- /*  computed: {
+  /*  computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   }, */
- /*  created() {
+  /*  created() {
     if (this.loggedIn) {
       this.$router.push("/profile");
     }
   }, */
-   methods: {
-     ...mapActions(["login"]),
-   /*  addUser() {
+  methods: {
+    ...mapActions(["login"]),
+    /*  addUser() {
       axios({
         method: "POST",
         url: "api/v1/auth/signin",
@@ -96,16 +112,15 @@ export default {
         .then((response) => console.log(response.data))
         .catch((error) => console.log(error));
     }, */
-     handleLogin() {
+    handleLogin() {
       this.loading = true;
-      this.login(this.loginDetails)
-      .then(() => {
-            if (this.getLogginStatus == true) {
-              return this.$router.push("/");
-            }
-          });
-     }
+      this.login(this.loginDetails).then(() => {
+        if (this.getLogginStatus == true) {
+          return this.$router.push("/dashboard");
+        }
+      });
+    },
   },
-  computed: mapGetters(["getLogginStatus"])
-}
+  computed: mapGetters(["getLogginStatus"]),
+};
 </script>
