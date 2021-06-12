@@ -87,13 +87,13 @@ public class DocumentController {
 	public void deleteDocument(@PathVariable("id") Long id){
 		documentService.delete(id);	
 	}
-//	
-//	@PatchMapping("/edit/{id}")
-//	public Document editDocuments(@PathVariable("id") Long id, @RequestBody Document document) {
-//		return documentService.get(id, document);
-//
-//		
-//	}
+	
+	@PatchMapping("/edit/{id}")
+	public Document editDocuments(@PathVariable("id") Long id, @RequestBody Document document) {
+		return documentService.updateDocument(id, document);
+
+		
+	}
 	
 	 @PostMapping
 	  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {

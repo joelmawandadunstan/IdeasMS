@@ -32,12 +32,12 @@ public class DocumentServices {
 		public void delete(Long id) {
 			documentRepo.deleteById(id);
 		}
-//		
-//		public Document get(Long id, Document document) {
-//	        return documentRepo.save(document);
-//	    }
-//			
-//}
+		
+		public Document updateDocument(Long id, Document document) {
+	        return documentRepo.save(document);
+	    }
+			
+
 	
 	public Document store(MultipartFile file) throws IOException {
 	    String name = StringUtils.cleanPath(file.getOriginalFilename());

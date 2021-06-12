@@ -101,10 +101,20 @@ import com.flyhub.ideamanagementsystem.repositories.UserRepository;
 	  userRepo.deleteById(id); 
 	  }
   
-  public User get(Long id, User user) { 	  
-	  return userRepo.save(user);
+//  public User get(Long id, User user) { 	  
+//	  return userRepo.save(user);
+//  
+//  }
   
-  }
+  public User updateUser(Long id, User user) {
+	  User foundUser = userRepo.findById(id).get();
+	  foundUser.setId(user.getId());
+	  foundUser.setUsername(user.getUsername());
+	  foundUser.setEmail(user.getEmail());
+	  //foundUser.setRoles(user.getRoles());
+	 
+	  return userRepo.save(foundUser);
+	  }
   
   public List<Role> getRoles(){ 
 	  return roleRepo.findAll(); 

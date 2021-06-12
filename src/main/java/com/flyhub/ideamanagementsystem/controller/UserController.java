@@ -54,8 +54,9 @@ public class UserController {
 	}
   
   @PatchMapping("/edit/{id}") 
-  public User editUser(@PathVariable("id") Long id, @RequestBody User user) { 
-	  return userService.get(id, user);
+  public User editUser(@PathVariable("id") Long id, @RequestBody User user) {
+	  return userService.updateUser(id, user);
+//	  return userService.get(id, user);
    }
   
 //  @PostMapping("/save") 
