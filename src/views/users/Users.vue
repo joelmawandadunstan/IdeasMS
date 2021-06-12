@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import usersData from "./UsersData";
+// import usersData from "./UsersData";
 import axios from "axios";
 export default {
   name: "Users",

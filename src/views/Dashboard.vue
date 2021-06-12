@@ -187,17 +187,17 @@ export default {
     msg:''
     }
 },
-// mounted(){
-//   fetch("/api/v1/message",
-//  {
-//    headers: {
-//     "method":'GET',
-//     "content-type": "application/json",
-//     "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-//  }},)
-//   .then(response => response.text())
-//   .then(data =>this.msg = data)
-// }
+mounted(){
+  fetch("/api/v1/message",
+ {
+   headers: {
+    "method":'GET',
+    "content-type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+ }},)
+  .then(response => response.text())
+  .then(data =>this.msg = data)
+}
 }
 
 

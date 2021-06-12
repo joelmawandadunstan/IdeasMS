@@ -24,11 +24,11 @@
           Users
         </CHeaderNavLink>
       </CHeaderNavItem>
-      <CHeaderNavItem class="px-3">
+      <!-- <CHeaderNavItem class="px-3">
         <CHeaderNavLink>
           Settings
         </CHeaderNavLink>
-      </CHeaderNavItem>
+      </CHeaderNavItem> -->
       <CHeaderNavItem class="px-3">
         <h3 v-if="user">
           Hi, {{user.username}}
@@ -64,6 +64,7 @@
 
 <script>
 import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
+import {mapActions, mapGetters} from 'vuex'
 import axios from 'axios'
 
 export default {

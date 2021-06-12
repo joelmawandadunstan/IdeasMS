@@ -52,7 +52,15 @@
     </CDataTable>
     <div>
       <CModal title="Update Document" color="success" :show.sync="warningModal">
-        <form>
+         <CInput
+          v-model="updateForm.name"
+          placeholder="name"
+          type="text"
+          autocomplete="name"
+        >
+          <template #prepend-content><CIcon name="cil-user" /></template>
+        </CInput>
+        <!-- <form>
           <div class="form-group">
             <label for="exampleFormControlFile1">file Upload</label>
             <input
@@ -61,7 +69,7 @@
               id="exampleFormControlFile1"
             />
           </div>
-        </form>
+        </form> -->
 
         <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
         <template #footer>
@@ -94,19 +102,6 @@ export default {
     };
   },
   methods: {
-    // deleteDocument(item) {
-    //   let deletingDocument = item.id;
-    //   console.log(deletingDocument);
-
-    //   axios
-    //     .delete("/api/v1/documents/delete/" + deletingDocument)
-    //     .then((response) => {
-    //       // Event.fire("updated");
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    // },
     deleteDocument(item) {
       let deletingDocument = (item) = item.id;
       console.log(deletingDocument);
@@ -128,10 +123,16 @@ export default {
       this.updateForm.name = item.name;
       this.updateForm.id = item.id; //Do i have to update the id
     },
-    updateDocument() {
+     updateDocument() {
       axios
-        .patch("/api/v1/documents/edit/" + this.updateForm.id, this.updateForm)
-
+        .patch("/api/v1/documents/edit/" + this.updateForm.id, this.updateForm,
+        {
+           headers: {
+             "content-type": "application/json",
+      
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+        })
         .then((response) => {
           // Event.fire("updated");
         })

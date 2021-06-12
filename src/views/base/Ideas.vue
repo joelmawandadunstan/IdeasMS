@@ -150,8 +150,13 @@ export default {
     },
     updateIdea() {
       axios
-        .patch("/api/v1/ideas/edit/" + this.updateForm.id, this.updateForm)
-
+        .patch("/api/v1/ideas/edit/" + this.updateForm.id, this.updateForm,
+        {
+           headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+        })
         .then((response) => {
           // Event.fire("updated");
         })
