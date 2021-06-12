@@ -28,21 +28,27 @@
                 />
                 <CRow>
                   <CCol sm="4">
-                    <CSelect label="Gender" 
-                    :options="gender"
-                    :value.sync="genderId" />
+                    <CSelect
+                      label="Gender"
+                      :options="gender"
+                      :value.sync="genderId"
+                    />
                   </CCol>
 
                   <CCol sm="4">
-                    <CSelect label="Prefix" 
-                    :options="prefix"
-                    :value.sync="prefixId" />
+                    <CSelect
+                      label="Prefix"
+                      :options="prefix"
+                      :value.sync="prefixId"
+                    />
                   </CCol>
 
                   <CCol sm="4">
-                    <CSelect label="Postfix" 
-                    :options="postfix" 
-                    :value.sync="postfixId"/>
+                    <CSelect
+                      label="Postfix"
+                      :options="postfix"
+                      :value.sync="postfixId"
+                    />
                   </CCol>
                 </CRow>
 
@@ -69,11 +75,14 @@
             </CCardBody>
             <CCardFooter class="p-4">
               <CRow>
-                <CCol col="6">
+                <CCol col="4">
                   <CButton block color="facebook"> Facebook </CButton>
                 </CCol>
-                <CCol col="6">
+                <CCol col="4">
                   <CButton block color="twitter"> Twitter </CButton>
+                </CCol>
+                <CCol col="4">
+                  <CButton block color="linkedin"> LinkedIn </CButton>
                 </CCol>
               </CRow>
             </CCardFooter>
@@ -93,9 +102,9 @@ export default {
       username: "",
       email: "",
       password: "",
-      genderId: '',
-      prefixId: '',
-      postfixId: '',
+      genderId: "",
+      prefixId: "",
+      postfixId: "",
       gender: [],
       prefix: [],
       postfix: [],
@@ -113,20 +122,20 @@ export default {
 
       axios.all([reqOne, reqTwo, reqThree]).then(
         axios.spread((gender, prefix, postfix) => {
-          this.gender = (gender.data).map((singleGender) => {
+          this.gender = gender.data.map((singleGender) => {
             return {
               value: singleGender.id,
               label: singleGender.genderName,
             };
           });
-           this.prefix = (prefix.data).map((singlePrefix) => {
+          this.prefix = prefix.data.map((singlePrefix) => {
             return {
               value: singlePrefix.id,
               label: singlePrefix.prefixName,
             };
           });
 
-          this.postfix = (postfix.data).map((singlePostfix) => {
+          this.postfix = postfix.data.map((singlePostfix) => {
             return {
               value: singlePostfix.id,
               label: singlePostfix.postfixName,
@@ -155,11 +164,11 @@ export default {
           prefixId: this.prefixId,
           postfixId: this.postfixId,
           password: this.password,
-        }
-      })
-        // .then((response) => console.log(response.data))
-        // .catch((error) => console.log(error));
-        this.$router.push('/pages/login')
+        },
+      });
+      // .then((response) => console.log(response.data))
+      // .catch((error) => console.log(error));
+      this.$router.push("/pages/login");
     },
   },
   created() {

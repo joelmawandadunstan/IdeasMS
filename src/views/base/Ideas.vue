@@ -43,9 +43,9 @@
             color="warning"
             square
             size="sm"
-            @click="toggleDetails(item)"
+            @click="printWindow()"
           >
-            AddNotes
+            Print Ideas
           </CButton>
         </td>
       </template>
@@ -124,6 +124,9 @@ export default {
     };
   },
   methods: {
+    printWindow: function () {        
+          window.print();
+      },
      deleteIdea(item) {
       let deletingIdea = item.id;
       console.log(deletingIdea);
@@ -208,3 +211,19 @@ export default {
 // response.json()
 // .
 </script>
+
+<style>
+@media print {
+ 
+  /* .main-nav,
+  .sidebar,
+  .table,
+  .main-footer{
+
+  } */
+}
+@page{  
+        size: potrait; /*Set the print size*/
+        margin: 0 ;  /*Remove the above watermark*/
+      }
+</style>
