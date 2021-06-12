@@ -6,12 +6,13 @@
       :fields="fields"
       striped
       caption="Documents Table"
+      :items-per-page="5"
+      :pagination="{ doubleArrows: false, align: 'center' }"
     >
       <template #Actions="{ item }">
         <td class="py-2">
           <CButton
             color="info"
-            variant="outline"
             square
             size="sm"
             @click="
@@ -22,29 +23,24 @@
             "
           >
             Edit
-          </CButton>
+          </CButton>&#160;
           <CButton
             color="danger"
-            variant="outline"
             square
             size="sm"
             @click="deleteDocument(item)"
           >
             Delete
-          </CButton>
-          <CButton
-            color="success"
-            variant="outline"
-            square
-            size="sm"
-            @click="toggleDetails(item)"
-          >
-            Attachment
+          </CButton>&#160;
+         
+          <CButton >
+            <router-link class="btn btn-success" to="/base/UploadFiles" role="button"
+              >Attachment</router-link
+            >
           </CButton>
 
           <CButton
             color="warning"
-            variant="outline"
             square
             size="sm"
             @click="toggleDetails(item)"
@@ -89,7 +85,7 @@ export default {
   data() {
     return {
       documents: [],
-      fields: ["id", "name", { key: "Actions" }],
+      fields: ["name", { key: "Actions" }],
       warningModal: false,
       updateForm: {
         id: "",
@@ -128,15 +124,19 @@ export default {
     },
   },
   mounted() {
-    axios.get("/api/v1/documents", {
-      headers: {
-        "Content-Type": "multipart/form-data",
-       // "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
-    //  .catch((error) => console.log(error));
-    //   .then(data =>this.ideas = data)
+    axios
+      .get("/api/v1/documents", {
+        headers: {
+          //"Content-Type": "multipart/form-data",
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        this.documents = response.data;
+        console.log(this.documents);
+      })
+      .catch((error) => console.log(error));
   },
 };
 // response.json()

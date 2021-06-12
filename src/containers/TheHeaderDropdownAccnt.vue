@@ -48,18 +48,19 @@
     <CDropdownItem>
       <CIcon name="cil-shield-alt" /> Lock Account
     </CDropdownItem>
-    <!-- <CDropdownItem>
+    <CDropdownItem @click="onLogout">
       <CIcon name="cil-lock-locked" /> Logout
-    </CDropdownItem> -->
-    <CDropdownItem>
-      <router-link class="btn btn-primary" to="/" role="button"
+    </CDropdownItem>
+    <!-- <CDropdownItem>
+      <router-link class="btn btn-primary" @click="onLogout" role="button"
         >Logout</router-link
       >
-    </CDropdownItem>
+    </CDropdownItem> -->
   </CDropdown>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: "TheHeaderDropdownAccnt",
   data() {
@@ -67,11 +68,13 @@ export default {
       itemsCount: 42,
     };
   },
-  /*  methods:{
-    async onLogout(){
-    await this.$router.push("/pages/login");
+    methods:{
+      ...mapActions(["logout"]),
+     onLogout(){
+      this.logout().then(()=>{this.$router.push("/");})
+     
   }
-} */
+} 
 };
 </script>
 

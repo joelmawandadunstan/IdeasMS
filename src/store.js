@@ -22,6 +22,10 @@ const actions = {
           }).catch(err => {
               commit("setLoginState", false);
           })
+  },
+  logout({ commit }){
+    localStorage.removeItem("accessToken");
+    commit("setLoginState", false);
   }
 }
 

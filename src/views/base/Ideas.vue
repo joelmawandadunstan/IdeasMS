@@ -112,7 +112,7 @@ export default {
       ideas: [],
       category: [],
       priority: [],
-      fields: ["id", "idea_title", "idea_description", { key: "Actions" }],
+      fields: ["idea_title", "idea_description", { key: "Actions" }],
       warningModal: false,
       updateForm: {
         id: "",

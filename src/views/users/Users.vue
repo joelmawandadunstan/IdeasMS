@@ -56,6 +56,13 @@
                 autocomplete="username"
               />
               <CInput
+                v-model="updateForm.roles"
+                label="Roles"
+                placeholder="role..."
+                type="text"
+                autocomplete="roles"
+              />
+              <CInput
                 v-model="updateForm.email"
                 placeholder="email"
                 type="text"
@@ -116,10 +123,9 @@ export default {
       prefix: [],
       postfix: [],
       fields: [
-        "id",
-        "email",
         "username",
-        "role",
+        "email",
+        "roles",
         { key: "Actions" },
       ],
       warningModal: false,
@@ -127,6 +133,7 @@ export default {
         id: "",
         email: "",
         username:"",
+        roles:"",
         genderId: "",
         prefixId: "",
         postfixId: "",
@@ -161,6 +168,7 @@ export default {
     propagateUser(item) {
       this.updateForm.email = item.email;
       this.updateForm.username = item.username;
+      this.updateForm.roles = item.roles;
       this.updateForm.id = item.id;
       this.updateForm.genderId = item.genderId;
       this.updateForm.prefixId = item.prefixId;
@@ -215,8 +223,15 @@ export default {
       },
     })
     .then((response) => {
-      this.users = response.data;
-      console.log(this.users);
+      // this.users = response.data;
+      // console.log(this.users);
+      this.users = response.data.map(user=>{
+        return{
+          username: user.username,
+          email: user.email,
+          roles: user.roles.map(role=>role.name)
+        }
+      })
     })
     .catch((error) => console.log(error));
     
