@@ -124,18 +124,22 @@ export default {
     };
   },
   methods: {
-    deleteIdea(item) {
+     deleteIdea(item) {
       let deletingIdea = item.id;
       console.log(deletingIdea);
 
-      axios
-        .delete("/api/v1/ideas/delete/" + deletingIdea)
-        .then((response) => {
-          // Event.fire("updated");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      axios.delete("/api/v1/ideas/delete/" + deletingIdea, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        // Event.fire("updated");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     },
     propagateIdea(item) {
       this.updateForm.idea_title = item.idea_title;

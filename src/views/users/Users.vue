@@ -26,8 +26,8 @@
                     }
                   "
                 >
-                  Edit
-                </CButton>&#160;
+                  Edit </CButton
+                >&#160;
                 <CButton
                   color="danger"
                   square
@@ -56,7 +56,7 @@
                 autocomplete="username"
               />
               <CInput
-                v-model="updateForm.roles"
+                v-model="updateForm.roles[0]"
                 label="Roles"
                 placeholder="role..."
                 type="text"
@@ -122,23 +122,17 @@ export default {
       gender: [],
       prefix: [],
       postfix: [],
-      fields: [
-        "username",
-        "email",
-        "roles",
-        { key: "Actions" },
-      ],
+      fields: ["username", "email", "roles", { key: "Actions" }],
       warningModal: false,
       updateForm: {
         id: "",
         email: "",
-        username:"",
-        roles:"",
+        username: "",
+        roles: "",
         genderId: "",
         prefixId: "",
         postfixId: "",
       },
-      
     };
   },
   /*  watch: {
@@ -156,14 +150,18 @@ export default {
       let deletingUser = item.id;
       console.log(deletingUser);
 
-      axios
-        .delete("/api/v1/users/delete/" + deletingUser)
-        .then((response) => {
-          // Event.fire("updated");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      axios.delete("/api/v1/users/delete/" + deletingUser, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        // Event.fire("updated");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     },
     propagateUser(item) {
       this.updateForm.email = item.email;
@@ -176,8 +174,13 @@ export default {
     },
     updateUser() {
       axios
-        .patch("/api/v1/users/edit/" + this.updateForm.id, this.updateForm)
-
+        .patch("/api/v1/users/edit/" + this.updateForm.id, this.updateForm,
+        {
+           headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+        })
         .then((response) => {
           // Event.fire("updated");
         })
@@ -215,26 +218,24 @@ export default {
     },
   },
   mounted() {
-    axios.get("/api/v1/users", {
-      headers: {
-        //"Content-Type": "multipart/form-data",
-        "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-    .then((response) => {
-      // this.users = response.data;
-      // console.log(this.users);
-      this.users = response.data.map(user=>{
-        return{
-          username: user.username,
-          email: user.email,
-          roles: user.roles.map(role=>role.name)
-        }
+    axios
+      .get("/api/v1/users", {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       })
-    })
-    .catch((error) => console.log(error));
-    
+      .then((response) => {
+        this.users = response.data.map((user) => {
+          return {
+            id:user.id,
+            username: user.username,
+            email: user.email,
+            roles: user.roles.map((role) => role.name),
+          };
+        });
+      })
+      .catch((error) => console.log(error));
   },
   created() {
     this.getLookUps();

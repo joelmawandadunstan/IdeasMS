@@ -94,18 +94,35 @@ export default {
     };
   },
   methods: {
+    // deleteDocument(item) {
+    //   let deletingDocument = item.id;
+    //   console.log(deletingDocument);
+
+    //   axios
+    //     .delete("/api/v1/documents/delete/" + deletingDocument)
+    //     .then((response) => {
+    //       // Event.fire("updated");
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    // },
     deleteDocument(item) {
-      let deletingDocument = item.id;
+      let deletingDocument = (item) = item.id;
       console.log(deletingDocument);
 
-      axios
-        .delete("/api/v1/documents/delete/" + deletingDocument)
-        .then((response) => {
-          // Event.fire("updated");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      axios.delete("/api/v1/documents/delete/" + deletingDocument, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        // Event.fire("updated");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     },
     propagateDocument(item) {
       this.updateForm.name = item.name;
