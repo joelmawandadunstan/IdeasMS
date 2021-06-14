@@ -18,6 +18,7 @@ const actions = {
       axios.post("api/v1/auth/signin", data)
           .then(response => {
               localStorage.setItem("accessToken", response.data.accessToken);
+              localStorage.setItem("username", response.data.username);
               commit('setLoginState', true);
           }).catch(err => {
               commit("setLoginState", false);

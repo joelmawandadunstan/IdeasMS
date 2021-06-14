@@ -40,6 +40,15 @@
           </CButton>
 
           <CButton
+            color="danger"
+            square
+            size="sm"
+            @click="deleteIdea(item)"
+          >
+            AddNotes
+          </CButton>&nbsp;
+
+          <CButton
             color="warning"
             square
             size="sm"
@@ -212,15 +221,17 @@ export default {
 // .
 </script>
 
-<style>
+<style lang="scss" scoped>
 @media print {
- 
-  /* .main-nav,
-  .sidebar,
-  .table,
-  .main-footer{
-
-  } */
+ .c-header{
+   visibility: hidden;
+ }
+ .c-footer{
+   visibility: hidden;
+ }
+.data-v-431cdece{
+  visibility: hidden;
+}
 }
 @page{  
         size: potrait; /*Set the print size*/

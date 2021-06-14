@@ -23,20 +23,12 @@
         <CHeaderNavLink to="/users" exact>
           Users
         </CHeaderNavLink>
-      </CHeaderNavItem>
+      </CHeaderNavItem> 
       <!-- <CHeaderNavItem class="px-3">
         <CHeaderNavLink>
           Settings
         </CHeaderNavLink>
       </CHeaderNavItem> -->
-      <CHeaderNavItem class="px-3">
-        <h3 v-if="user">
-          Hi, {{user.username}}
-        </h3>
-        <h3 v-if="!user">
-          You are not loggen in!
-        </h3>
-      </CHeaderNavItem>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="d-md-down-none mx-2">
@@ -53,6 +45,14 @@
         <CHeaderNavLink>
           <CIcon name="cil-envelope-open"/>
         </CHeaderNavLink>
+      </CHeaderNavItem>
+      <CHeaderNavItem class="px-3">
+        <h4 v-if="getLogginStatus">
+          Hi, {{users}} 
+        </h4>
+        <h4 v-if="!getLogginStatus">
+          You are not loggen in!
+        </h4>
       </CHeaderNavItem>
       <TheHeaderDropdownAccnt/>
     </CHeaderNav>
@@ -74,23 +74,18 @@ export default {
   },
   data(){
     return{
-      user: null
+      users:""
     }
   },
-  mounted() {
-    axios.get("/api/v1/users", {
-      headers: {
-        //"Content-Type": "multipart/form-data",
-        "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-    .then((response) => {
-      this.users = response.data;
-      console.log(this.users);
-    })
-    .catch((error) => console.log(error));
-    
+  computed:mapGetters(["getLogginStatus"]),
+  methods: {
+    getUser() {
+     this.users = localStorage.getItem("username")
+      console.log (this.users)
+    }
+  },
+  created() {
+    this.getUser()
   },
 }
 </script>
