@@ -40,10 +40,16 @@
           </CButton>
 
           <CButton
-            color="danger"
+            color="primary"
             square
             size="sm"
-            @click="deleteIdea(item)"
+            @click="
+              {
+                primaryModal = true;
+                propagateNote(item);
+                
+              }
+            "
           >
             AddNotes
           </CButton>&nbsp;
@@ -105,7 +111,26 @@
           >
         </template>
       </CModal>
+
+      <CModal title="Add Notes" color="primary" :show.sync="primaryModal">
+        <CInput
+          v-model="note.content"
+          placeholder="AddNote"
+          type="text"
+          autocomplete="AddNote"
+        >   
+        </CInput>
+
+        <CInput v-model="note.idea_id" placeholder="id" type="hidden"/>
+        <template #footer>
+          <CButton type="submit" color="primary">Cancel</CButton>
+          <CButton type="submit" color="primary" @click="addNote"
+            >AddNote</CButton
+          >
+        </template>
+      </CModal>
     </div>
+  
   </CCard>
 </template>
 
@@ -121,8 +146,14 @@ export default {
       ideas: [],
       category: [],
       priority: [],
+      content: "",
       fields: ["idea_title", "idea_description", { key: "Actions" }],
       warningModal: false,
+      primaryModal: false,
+      note: {
+        idea_id: "",
+        content: ""
+      },
       updateForm: {
         id: "",
         idea_title: "",
@@ -133,6 +164,24 @@ export default {
     };
   },
   methods: {
+    propagateNote(item) {
+      this.note.idea_id = item.id
+    },
+    addNote() {
+      // const data = {
+      //   content: this.content
+      // };
+      console.log(this.note);
+      axios
+        .post(`api/v1/notes`, this.note, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+    },
     printWindow: function () {        
           window.print();
       },

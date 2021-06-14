@@ -43,6 +43,10 @@ export default [
             to: '/base/ideas'
           },
           {
+            name: 'Notes',
+            to: '/base/notes'
+          },
+          {
             name: 'ideaCreate',
             to: '/base/ideaCreate'
           },

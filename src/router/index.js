@@ -20,6 +20,7 @@ const Switches = () => import('@/views/base/Switches')
 const Tables = () => import('@/views/base/Tables')
 const Tabs = () => import('@/views/base/Tabs')
 const Ideas = () => import('@/views/base/Ideas')
+const Notes = () => import('@/views/base/Notes')
 const ideaCreate = () => import('@/views/base/ideaCreate')
 const documents = () => import('@/views/base/documents')
 const documentCreate = () => import('@/views/base/documentCreate')
@@ -153,6 +154,11 @@ function configRoutes () {
               path: 'ideas',
               name: 'Ideas',
               component: Ideas
+            },
+            {
+              path: 'notes',
+              name: 'Notes',
+              component: Notes
             },
             {
               path: 'ideaCreate',
