@@ -31,10 +31,10 @@ public class UserController {
 		return userService.listAll();
 	}
   
-  @GetMapping("/{id}")
-	public User viewParticularUser(@PathVariable("id") Long id, @RequestBody User user) {
-		return userService.getParticularUser(id, user);
-	}
+//  @GetMapping("/{id}")
+//	public User viewParticularUser(@PathVariable("id") Long id, @RequestBody User user) {
+//		return userService.getParticularUser(id, user);
+//	}
   
   @PostMapping
   public User processRegistration(@RequestBody User user ) 

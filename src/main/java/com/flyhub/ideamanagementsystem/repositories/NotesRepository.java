@@ -1,5 +1,7 @@
 package com.flyhub.ideamanagementsystem.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,11 +14,11 @@ import com.flyhub.ideamanagementsystem.entity.User;
 
 @Repository
 //public interface NotesRepository extends JpaRepository<Notes, Long> {
-public interface NotesRepository extends PagingAndSortingRepository<Notes, Long>{
+public interface NotesRepository extends JpaRepository<Notes, Long>{
 	
 	@Query("SELECT n FROM Notes n WHERE " 
 			+ " CONCAT(n.id, '', n.content)"
 			+ " LIKE %?1%")
-	public Page<Notes> findAll(String keyword, Pageable pageable);
+	public List<Notes> findAll(String keyword, Pageable pageable);
 
 }
