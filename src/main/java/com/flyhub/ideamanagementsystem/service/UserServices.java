@@ -6,8 +6,12 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.flyhub.ideamanagementsystem.CustomUserDetails;
 import com.flyhub.ideamanagementsystem.entity.Role;
 import com.flyhub.ideamanagementsystem.entity.User;
 import com.flyhub.ideamanagementsystem.repositories.RoleRepository;
@@ -97,11 +101,14 @@ import com.flyhub.ideamanagementsystem.repositories.UserRepository;
 	  return userRepo.findAll(); 
 	  }
   
+  
   public void delete(Long id) { 
 	  userRepo.deleteById(id); 
 	  }
   
-//  public User get(Long id, User user) { 	  
+//  public User getParticularUser(Long id, User user) {
+//	  User findUser = userRepo.findById(id).get();
+//	  findUser.setUsername(user.getUsername());
 //	  return userRepo.save(user);
 //  
 //  }
@@ -111,8 +118,7 @@ import com.flyhub.ideamanagementsystem.repositories.UserRepository;
 	  foundUser.setId(user.getId());
 	  foundUser.setUsername(user.getUsername());
 	  foundUser.setEmail(user.getEmail());
-	  //foundUser.setRoles(user.getRoles());
-	 
+	  foundUser.setRoles(user.getRoles());
 	  return userRepo.save(foundUser);
 	  }
   

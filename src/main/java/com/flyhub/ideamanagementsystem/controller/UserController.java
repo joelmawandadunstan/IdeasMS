@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flyhub.ideamanagementsystem.entity.User;
+import com.flyhub.ideamanagementsystem.service.CustomUserDetailsService;
 import com.flyhub.ideamanagementsystem.service.UserServices;
   
 //@CrossOrigin(origins = "http://localhost:3000")
@@ -23,10 +24,16 @@ import com.flyhub.ideamanagementsystem.service.UserServices;
 public class UserController {
 
   @Autowired UserServices userService;
+  
 
   @GetMapping
 	public List<User> viewUsersList() {
 		return userService.listAll();
+	}
+  
+  @GetMapping("/{id}")
+	public User viewParticularUser(@PathVariable("id") Long id, @RequestBody User user) {
+		return userService.getParticularUser(id, user);
 	}
   
   @PostMapping
