@@ -22,8 +22,8 @@ public class Notes {
 	@Column(name = "notes_id")
 	private Long id;
 	
-	 @ManyToOne//	  
-	  @JoinColumn(name = "idea_id", referencedColumnName="idea_id", insertable=false, updatable=false)
+	 @ManyToOne	  
+	  @JoinColumn(name = "idea_id", insertable=false, updatable=false)
 	 private Idea idea;
 	 private Long idea_id;
 //	  
