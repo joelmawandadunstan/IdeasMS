@@ -1,4 +1,4 @@
-<template>
+ <template>
   <CCard>
     <h1>List Of Notes</h1>
     <CDataTable
@@ -78,7 +78,6 @@
 <script>
 //import usersData from "../users/UsersData";
 import axios from "axios";
-
 export default {
   name: "notes",
   components: {},
@@ -97,7 +96,6 @@ export default {
     deleteNote(item) {
       let deletingNote = (item) = item.id;
       console.log(deletingNote);
-
       axios.delete("/api/v1/notes/delete/" + deletingNote, {
         headers: {
           "content-type": "application/json",

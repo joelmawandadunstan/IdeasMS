@@ -61,6 +61,16 @@
             @click="printWindow()"
           >
             Print Ideas
+          </CButton>&nbsp;
+
+          <CButton
+            color="info"
+            square
+            size="sm"
+            @click="infoModal = true;
+            propNotes(item);"
+          >
+            View Notes
           </CButton>
         </td>
       </template>
@@ -138,6 +148,18 @@
                 >
               </template>
             </CModal>
+         <CModal title="Notes" color="ifo" :show.sync="infoModal">
+              <ul v-for="note in notes" :key="note.id">
+                <li>
+                  {{note.content}}
+                </li>
+              </ul>
+              <template #footer>
+                <CButton @click="infoModal = false" color="info">Back</CButton>
+                <!-- <CButton type="submit" color="info" @click="j"></CButton
+                > -->
+              </template>
+            </CModal>
     </div>
   
   </CCard>
@@ -152,6 +174,7 @@ export default {
   components: {},
   data() {
     return {
+      notes: [],
       ideas: [],
       category: [],
       priority: [],
@@ -160,6 +183,7 @@ export default {
       warningModal: false,
       primaryModal: false,
       dangerModal: false,
+      infoModal: false,
       note: {
         idea_id: "",
         content: ""
@@ -174,6 +198,9 @@ export default {
     };
   },
   methods: {
+    propNotes(item){
+      this.notes = item.notes
+    },
     loadModal(item){
       this.dangerModal=true;
       this.item = item;
@@ -271,7 +298,7 @@ export default {
         },
       })
       .then((response) => {
-        this.ideas = response.data;
+        this.ideas = response.data
         console.log(this.ideas);
       })
       .catch((error) => console.log(error));
