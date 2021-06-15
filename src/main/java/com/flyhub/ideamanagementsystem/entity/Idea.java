@@ -1,5 +1,7 @@
 package com.flyhub.ideamanagementsystem.entity;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 	@Entity
 	@Table(name = "ideas")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 	public class Idea {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,17 +45,23 @@ import javax.persistence.Table;
 		@Column(name="createDate")
 		private String createDate;
 		
-		@OneToMany(mappedBy = "idea", orphanRemoval=true)
-		private List<Notes> notes;
+		@OneToMany(cascade = CascadeType.ALL, mappedBy ="idea", orphanRemoval = true)
+	    private List<Notes> notes = new ArrayList<>();
+		
+//		@OneToMany(mappedBy = "idea", orphanRemoval=true)
+//		private List<Notes> notes;
 		
 		@OneToMany(mappedBy = "idea", orphanRemoval=true)
 		private List<Document> document;
-		
-		//constructor
-//		public Idea() {
-//				
-//			}
-	
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
 		public User getUser() {
 			return user;
 		}
@@ -65,30 +76,6 @@ import javax.persistence.Table;
 
 		public void setUser_id(Long user_id) {
 			this.user_id = user_id;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		public int getCategoryId() {
-			return categoryId;
-		}
-
-		public void setCategoryId(int categoryId) {
-			this.categoryId = categoryId;
-		}
-		
-		public int getPriorityId() {
-			return priorityId;
-		}
-
-		public void setPriorityId(int priorityId) {
-			this.priorityId = priorityId;
 		}
 
 		public String getIdea_title() {
@@ -107,6 +94,22 @@ import javax.persistence.Table;
 			this.idea_description = idea_description;
 		}
 
+		public int getCategoryId() {
+			return categoryId;
+		}
+
+		public void setCategoryId(int categoryId) {
+			this.categoryId = categoryId;
+		}
+
+		public int getPriorityId() {
+			return priorityId;
+		}
+
+		public void setPriorityId(int priorityId) {
+			this.priorityId = priorityId;
+		}
+
 		public String getCreateDate() {
 			return createDate;
 		}
@@ -114,6 +117,28 @@ import javax.persistence.Table;
 		public void setCreateDate(String createDate) {
 			this.createDate = createDate;
 		}
+
+		public List<Notes> getNotes() {
+			return notes;
+		}
+
+		public void setNotes(List<Notes> notes) {
+			this.notes = notes;
+		}
+
+		public List<Document> getDocument() {
+			return document;
+		}
+
+		public void setDocument(List<Document> document) {
+			this.document = document;
+		}
+		
+		//constructor
+//		public Idea() {
+//				
+//			}
+	
 		
 		
 	}
