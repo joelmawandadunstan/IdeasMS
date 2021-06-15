@@ -146,6 +146,7 @@ export default {
     },
 
     addUser() {
+      console.log (this.prefixId)
       // console.table(
       //     {firstName: this.firstName,
       //     lastName: this.lastName,

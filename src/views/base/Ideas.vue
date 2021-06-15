@@ -28,7 +28,7 @@
             color="danger"
             square
             size="sm"
-            @click="deleteIdea(item)"
+            @click="loadModal(item)"
           >
             Delete
           </CButton>
@@ -129,6 +129,15 @@
           >
         </template>
       </CModal>
+       <CModal title="Delete Note" color="danger" :show.sync="dangerModal">
+              <b>Are you sure you want to delete this Idea?</b>
+              <template #footer>
+                <CButton type="submit" color="danger">Cancel</CButton>
+                <CButton type="submit" color="danger" @click="deleteIdea(item)"
+                  >Delete</CButton
+                >
+              </template>
+            </CModal>
     </div>
   
   </CCard>
@@ -147,9 +156,10 @@ export default {
       category: [],
       priority: [],
       content: "",
-      fields: ["idea_title", "idea_description", { key: "Actions" }],
+      fields: ["idea_title", "idea_description",{ key: "Actions" }],
       warningModal: false,
       primaryModal: false,
+      dangerModal: false,
       note: {
         idea_id: "",
         content: ""
@@ -164,6 +174,10 @@ export default {
     };
   },
   methods: {
+    loadModal(item){
+      this.dangerModal=true;
+      this.item = item;
+    },
     propagateNote(item) {
       this.note.idea_id = item.id
     },

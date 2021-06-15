@@ -32,7 +32,7 @@
                   color="danger"
                   square
                   size="sm"
-                  @click="deleteUser(item)"
+                  @click="loadModal(item)"
                 >
                   Delete
                 </CButton>
@@ -103,6 +103,15 @@
                 >
               </template>
             </CModal>
+            <CModal title="Delete Note" color="danger" :show.sync="dangerModal">
+              <b>Are you sure you want to delete this User?</b>
+              <template #footer>
+                <CButton type="submit" color="danger">Cancel</CButton>
+                <CButton type="submit" color="danger" @click="deleteUser(item)"
+                  >Delete</CButton
+                >
+              </template>
+            </CModal>
           </div>
         </CCardBody>
       </CCard>
@@ -124,6 +133,7 @@ export default {
       postfix: [],
       fields: ["username", "email", "roles", { key: "Actions" }],
       warningModal: false,
+      dangerModal:false,
       updateForm: {
         id: "",
         email: "",
@@ -146,22 +156,27 @@ export default {
     }
   }, */
   methods: {
+    loadModal(item){
+      this.dangerModal=true;
+      this.item = item;
+    },
     deleteUser(item) {
       let deletingUser = item.id;
       console.log(deletingUser);
 
-      axios.delete("/api/v1/users/delete/" + deletingUser, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        // Event.fire("updated");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      axios
+        .delete("/api/v1/users/delete/" + deletingUser, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          // Event.fire("updated");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     propagateUser(item) {
       this.updateForm.email = item.email;
@@ -174,12 +189,11 @@ export default {
     },
     updateUser() {
       axios
-        .patch("/api/v1/users/edit/" + this.updateForm.id, this.updateForm,
-        {
-           headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    },
+        .patch("/api/v1/users/edit/" + this.updateForm.id, this.updateForm, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         })
         .then((response) => {
           // Event.fire("updated");
@@ -228,7 +242,7 @@ export default {
       .then((response) => {
         this.users = response.data.map((user) => {
           return {
-            id:user.id,
+            id: user.id,
             username: user.username,
             email: user.email,
             roles: user.roles.map((role) => role.name),
