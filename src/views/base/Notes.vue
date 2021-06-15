@@ -28,7 +28,7 @@
             color="danger"
             square
             size="sm"
-            @click="deleteNote(item)"
+            @click="loadModal(item)"
           >
             Delete
           </CButton>&#160;
@@ -64,12 +64,21 @@
 
         <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
         <template #footer>
-          <CButton type="submit" color="success">Cancel</CButton>
+          <CButton @click="warningModal = false" color="success">Cancel</CButton>
           <CButton type="submit" color="success" @click="updateNote"
             >Edit</CButton
           >
         </template>
       </CModal>
+       <CModal title="Delete Note" color="danger" :show.sync="dangerModal">
+              <b>Are you sure you want to delete this Note?</b>
+              <template #footer>
+                <CButton @click="dangerModal = false" color="danger">Cancel</CButton>
+                <CButton type="submit" color="danger" @click="deleteNote(item)"
+                  >Delete</CButton
+                >
+              </template>
+            </CModal>
     </div>
     
   </CCard>
@@ -86,6 +95,7 @@ export default {
       notes: [],
       fields: ["content", { key: "Actions" }],
       warningModal: false,
+      dangerModal: false,
       updateForm: {
         id: "",
         content: "",
@@ -93,6 +103,10 @@ export default {
     };
   },
   methods: {
+    loadModal(item){
+      this.dangerModal=true;
+      this.item = item;
+    },
     deleteNote(item) {
       let deletingNote = (item) = item.id;
       console.log(deletingNote);

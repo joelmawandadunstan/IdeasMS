@@ -115,7 +115,7 @@
         </CRow>
         <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
         <template #footer>
-          <CButton type="submit" color="success">Cancel</CButton>
+          <CButton @click="warningModal = false" color="success">Cancel</CButton>
           <CButton type="submit" color="success" @click="updateIdea"
             >Edit</CButton
           >
@@ -133,16 +133,16 @@
 
         <CInput v-model="note.idea_id" placeholder="id" type="hidden"/>
         <template #footer>
-          <CButton type="submit" color="primary">Cancel</CButton>
+          <CButton @click="primaryModal = false" color="primary">Cancel</CButton>
           <CButton type="submit" color="primary" @click="addNote"
             >AddNote</CButton
           >
         </template>
       </CModal>
-       <CModal title="Delete Note" color="danger" :show.sync="dangerModal">
+       <CModal title="Delete Idea" color="danger" :show.sync="dangerModal">
               <b>Are you sure you want to delete this Idea?</b>
               <template #footer>
-                <CButton type="submit" color="danger">Cancel</CButton>
+                <CButton @click="dangerModal = false" color="danger">Cancel</CButton>
                 <CButton type="submit" color="danger" @click="deleteIdea(item)"
                   >Delete</CButton
                 >

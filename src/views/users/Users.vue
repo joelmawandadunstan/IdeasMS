@@ -97,16 +97,16 @@
               </CRow>
               <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
               <template #footer>
-                <CButton type="submit" color="success">Cancel</CButton>
+                <CButton @click="warningModal = false" color="success">Cancel</CButton>
                 <CButton type="submit" color="success" @click="updateUser"
                   >Edit</CButton
                 >
               </template>
             </CModal>
-            <CModal title="Delete Note" color="danger" :show.sync="dangerModal">
+            <CModal title="Delete User" color="danger" :show.sync="dangerModal">
               <b>Are you sure you want to delete this User?</b>
               <template #footer>
-                <CButton type="submit" color="danger">Cancel</CButton>
+                <CButton @click="dangerModal = false" color="danger">Cancel</CButton>
                 <CButton type="submit" color="danger" @click="deleteUser(item)"
                   >Delete</CButton
                 >
