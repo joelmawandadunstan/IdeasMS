@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -51,7 +55,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 //		@OneToMany(mappedBy = "idea", orphanRemoval=true)
 //		private List<Notes> notes;
 		
-		@OneToMany(mappedBy = "idea", orphanRemoval=true)
+		@OneToMany(cascade = CascadeType.ALL, mappedBy = "idea")
+		@OnDelete(action = OnDeleteAction.CASCADE)
 		private List<Document> document;
 
 		public Long getId() {

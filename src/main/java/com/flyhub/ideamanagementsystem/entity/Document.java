@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,10 +20,15 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	 @ManyToOne//	  
-	  @JoinColumn(name = "idea_id", referencedColumnName="idea_id", insertable=false, updatable=false)
-	 private Idea idea;
-	 private Long idea_id;
+//	 @ManyToOne	  
+//	  @JoinColumn(name = "idea_id", referencedColumnName="idea_id", insertable=false, updatable=false)
+//	 private Idea idea;
+//	 private Long idea_id;
+	 
+	 @ManyToOne(fetch=FetchType.LAZY)
+	    @JoinColumn(name="idea_id", insertable=false,updatable=false)
+	    private Idea idea;
+	    private Long idea_id;
 	
 	@Column(length = 512, nullable = false, unique = true)
 	private String name;
