@@ -8,7 +8,7 @@
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
-          <img src="img/avatars/6.jpg" class="c-avatar-img" />
+          <img src="img/avatars/9.jpg" class="c-avatar-img" />
         </div>
       </CHeaderNavLink>
     </template>
@@ -36,7 +36,7 @@
     </CDropdownHeader> -->
     <CDropdownItem> <CIcon name="cil-user" /> Profile </CDropdownItem>
     <!-- <CDropdownItem> <CIcon name="cil-settings" /> Settings </CDropdownItem> -->
-    <CDropdownItem>
+    <!-- <CDropdownItem>
       <CIcon name="cil-dollar" /> Payments
       <CBadge color="secondary" class="mfs-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
@@ -44,7 +44,7 @@
       <CIcon name="cil-file" /> Projects
       <CBadge color="primary" class="mfs-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
-    <CDropdownDivider />
+    <CDropdownDivider /> -->
     <!-- <CDropdownItem>
       <CIcon name="cil-shield-alt" /> Lock Account
     </CDropdownItem> -->

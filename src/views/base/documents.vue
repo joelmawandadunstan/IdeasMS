@@ -28,25 +28,16 @@
             color="danger"
             square
             size="sm"
-            @click="deleteDocument(item)"
+            @click="loadModal(item)"
           >
             Delete
           </CButton>&#160;
          
-          <CButton >
+          <!-- <CButton >
             <router-link class="btn btn-success" to="/base/UploadFiles" role="button"
               >Attachment</router-link
             >
-          </CButton>
-
-          <CButton
-            color="warning"
-            square
-            size="sm"
-            @click="toggleDetails(item)"
-          >
-            AddNotes
-          </CButton>
+          </CButton> -->
         </td>
       </template>
     </CDataTable>
@@ -58,7 +49,7 @@
           type="text"
           autocomplete="name"
         >
-          <template #prepend-content><CIcon name="cil-user" /></template>
+          
         </CInput>
         <!-- <form>
           <div class="form-group">
@@ -73,12 +64,21 @@
 
         <CInput v-model="updateForm.id" placeholder="id" type="hidden" />
         <template #footer>
-          <CButton type="submit" color="success">Cancel</CButton>
+          <CButton  @click="warningModal = false" color="success">Cancel</CButton>
           <CButton type="submit" color="success" @click="updateDocument"
             >Edit</CButton
           >
         </template>
       </CModal>
+      <CModal title="Delete Document" color="danger" :show.sync="dangerModal">
+              <b>Are you sure you want to delete this Document?</b>
+              <template #footer>
+                <CButton @click="dangerModal = false" color="danger">Cancel</CButton>
+                <CButton type="submit" color="danger" @click="deleteDocument(item)"
+                  >Delete</CButton
+                >
+              </template>
+            </CModal>
     </div>
   </CCard>
 </template>
@@ -95,6 +95,7 @@ export default {
       documents: [],
       fields: ["name", { key: "Actions" }],
       warningModal: false,
+      dangerModal: false,
       updateForm: {
         id: "",
         name: "",
@@ -102,6 +103,10 @@ export default {
     };
   },
   methods: {
+    loadModal(item){
+      this.dangerModal=true;
+      this.item = item;
+    },
     deleteDocument(item) {
       let deletingDocument = (item) = item.id;
       console.log(deletingDocument);

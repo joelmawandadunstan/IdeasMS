@@ -131,7 +131,7 @@ export default {
       gender: [],
       prefix: [],
       postfix: [],
-      fields: ["username", "email", "roles", { key: "Actions" }],
+      fields: ["username", "email",{ key: "Actions" }],
       warningModal: false,
       dangerModal:false,
       updateForm: {

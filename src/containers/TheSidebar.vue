@@ -13,6 +13,11 @@
         :height="35" 
         viewBox="0 0 556 134"
       /> -->
+      <div class="c-sidebar-brand-full">
+          <img src="img/avatars/11.jpg"
+          height="100"
+          width="250" />
+        </div>
       <CIcon 
         class="c-sidebar-brand-minimized" 
         name="logo" 

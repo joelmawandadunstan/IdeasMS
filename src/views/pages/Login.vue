@@ -3,6 +3,9 @@
     <CContainer>
       <CRow class="justify-content-center">
         <CCol md="8">
+          <!-- <div class="alert alert-light" role="alert">
+            {{ message }}
+          </div> -->
           <CCardGroup>
             <CCard class="p-4">
               <CCardBody>
@@ -56,9 +59,7 @@
                 <h1>IDEA MANAGEMENT SYSTEM</h1>
                 <h3>Put your ideas to life</h3>
                 <br />
-                <CLink to="register">
-                   Register Now!
-                </CLink>
+                <CLink to="register"> Register Now! </CLink>
                 <!-- <a class="btn btn-success" href="pages/register" role="button"
                   >Register Now!</a
                 > -->
@@ -86,6 +87,7 @@ export default {
   data() {
     return {
       loginDetails: { username: "", password: "" },
+      message: "",
     };
   },
   /*  computed: {

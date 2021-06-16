@@ -6,7 +6,7 @@
     </div>
     <WidgetsDropdown/>
     <CCard>
-      <CCardBody>
+      <!-- <CCardBody>
         <CRow>
           <CCol sm="5">
             <h4 id="traffic" class="card-title mb-0">Traffic</h4>
@@ -31,7 +31,7 @@
           </CCol>
         </CRow>
         <MainChartExample style="height:300px;margin-top:40px;"/>
-      </CCardBody>
+      </CCardBody> -->
       <CCardFooter>
         <CRow class="text-center">
           <CCol md sm="12" class="mb-sm-2 mb-0">
@@ -187,17 +187,17 @@ export default {
     msg:''
     }
 },
-mounted(){
-  fetch("/api/v1/message",
- {
-   headers: {
-    "method":'GET',
-    "content-type": "application/json",
-    "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
- }},)
-  .then(response => response.text())
-  .then(data =>this.msg = data)
-}
+// mounted(){
+//   fetch("/api/v1/message",
+//  {
+//    headers: {
+//     "method":'GET',
+//     "content-type": "application/json",
+//     "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+//  }},)
+//   .then(response => response.text())
+//   .then(data =>this.msg = data)
+// }
 }
 
 
