@@ -1,6 +1,6 @@
 <template>
   <CRow>
-    <CCol col="12" xl="8">
+    <CCol col="12" xl="12">
       <CCard>
         <CCardHeader> Users </CCardHeader>
         <CCardBody>
@@ -131,6 +131,9 @@ export default {
       gender: [],
       prefix: [],
       postfix: [],
+      findUser: "",
+      removeUser:[],
+      updatedUser: {},
       fields: ["username", "email",{ key: "Actions" }],
       warningModal: false,
       dangerModal:false,
@@ -172,7 +175,8 @@ export default {
           },
         })
         .then((response) => {
-          // Event.fire("updated");
+          this.dangerModal = false
+          this.users = this.users.filter(user=>user.id!==deletingUser)
         })
         .catch((error) => {
           console.error(error);
@@ -196,7 +200,16 @@ export default {
           },
         })
         .then((response) => {
-          // Event.fire("updated");
+          this.warningModal = false
+          this.findUser = this.users.findIndex(user=>user.id===response.data.id)
+          this.updatedUser = {
+            id: response.data.id,
+            username: response.data.username,
+            email: response.data.email,
+            roles: response.data.roles.map((role) => role.name),
+          };
+          this.users.splice(this.findUser,1,this.updatedUser)
+          return this.users
         })
         .catch((error) => {
           console.error(error);

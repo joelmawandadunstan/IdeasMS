@@ -96,6 +96,9 @@ export default {
       fields: ["content", { key: "Actions" }],
       warningModal: false,
       dangerModal: false,
+      findNote: "",
+      removeNote:[],
+      updatedNote: {},
       updateForm: {
         id: "",
         content: "",
@@ -117,7 +120,8 @@ export default {
         },
       })
       .then((response) => {
-        // Event.fire("updated");
+        this.dangerModal = false
+        this.notes = this.notes.filter(note=>note.id!==deletingNote)
       })
       .catch((error) => {
         console.error(error);
@@ -138,7 +142,14 @@ export default {
     },
         })
         .then((response) => {
-          // Event.fire("updated");
+          this.warningModal = false
+          this.findNote = this.notes.findIndex(note=>note.id===response.data.id)
+          this.updatedNote = {
+            id: response.data.id,
+            content: response.data.content,
+        };
+          this.notes.splice(this.findNote,1,this.updatedNote)
+          return this.notes
         })
         .catch((error) => {
           console.error(error);

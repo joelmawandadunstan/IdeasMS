@@ -54,14 +54,14 @@
             AddNotes
           </CButton>&nbsp;
 
-          <CButton
+          <!-- <CButton
             color="warning"
             square
             size="sm"
             @click="printWindow()"
           >
             Print Ideas
-          </CButton>&nbsp;
+          </CButton>&nbsp; -->
 
           <CButton
             color="info"
@@ -179,6 +179,9 @@ export default {
       category: [],
       priority: [],
       content: "",
+      findIdea: "",
+      removeIdea:[],
+      updatedIdea: {},
       fields: ["idea_title", "idea_description",{ key: "Actions" }],
       warningModal: false,
       primaryModal: false,
@@ -220,7 +223,9 @@ export default {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         })
-        .then((response) => console.log(response))
+        .then((response) => {
+          this.primaryModal = false
+        })
         .catch((error) => console.log(error));
     },
     printWindow: function () {        
@@ -237,7 +242,8 @@ export default {
         },
       })
       .then((response) => {
-        // Event.fire("updated");
+        this.dangerModal = false
+        this.ideas = this.ideas.filter(idea=>idea.id!==deletingIdea)
       })
       .catch((error) => {
         console.error(error);
@@ -260,7 +266,15 @@ export default {
     },
         })
         .then((response) => {
-          // Event.fire("updated");
+          this.warningModal = false
+          this.findIdea = this.ideas.findIndex(idea=>idea.id===response.data.id)
+          this.updatedIdea = {
+            id: response.data.id,
+            idea_title: response.data.idea_title,
+            idea_description: response.data.idea_description
+          };
+           this.ideas.splice(this.findIdea,1,this.updatedIdea)
+          return this.ideas
         })
         .catch((error) => {
           console.error(error);

@@ -96,6 +96,9 @@ export default {
       fields: ["name", { key: "Actions" }],
       warningModal: false,
       dangerModal: false,
+      findDocument: "",
+      removeDocument:[],
+      updatedDocument: {},
       updateForm: {
         id: "",
         name: "",
@@ -118,7 +121,8 @@ export default {
         },
       })
       .then((response) => {
-        // Event.fire("updated");
+        this.dangerModal = false
+        this.documents = this.documents.filter(document=>document.id!==deletingDocument)
       })
       .catch((error) => {
         console.error(error);
@@ -139,7 +143,14 @@ export default {
     },
         })
         .then((response) => {
-          // Event.fire("updated");
+          this.warningModal = false
+          this.findDocument = this.documents.findIndex(document=>document.id===response.data.id)
+          this.updatedNote = {
+            id: response.data.id,
+            name: response.data.name,
+        };
+          this.documents.splice(this.findDocument,1,this.updatedDocument)
+          return this.documents
         })
         .catch((error) => {
           console.error(error);
