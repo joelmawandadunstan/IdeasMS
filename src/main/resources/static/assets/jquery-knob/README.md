@@ -71,7 +71,7 @@ Hooks
 * 'draw' : when drawing the canvas
 
     Context :
-    - this.g : canvas context 2D (see Canvas documentation)
+    - this.g : canvas context 2D (see Canvas Attachmentation)
     - this.$ : jQuery wrapped element
     - this.o : options
     - this.i : input

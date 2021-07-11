@@ -53,7 +53,7 @@ Version 2, June 1991
  Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+ of this license Attachment, but changing it is not allowed.
 
 Preamble
 
@@ -338,7 +338,7 @@ Version 2.1, February 1999
  Copyright (C) 1991, 1999 Free Software Foundation, Inc.
      59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+ of this license Attachment, but changing it is not allowed.
 
 [This is the first released version of the Lesser GPL.  It also counts
  as the successor of the GNU Library Public License, version 2, hence
@@ -828,7 +828,7 @@ Version 1.1
      1.7. "Larger Work" means a work which combines Covered Code or
      portions thereof with code not governed by the terms of this License.
 
-     1.8. "License" means this document.
+     1.8. "License" means this Attachment.
 
      1.8.1. "Licensable" means having the right to grant, to the maximum
      extent possible, whether at the time of the initial grant or
@@ -947,7 +947,7 @@ Version 1.1
      distribute. You may not offer or impose any terms on any Source Code
      version that alters or restricts the applicable version of this
      License or the recipients' rights hereunder. However, You may include
-     an additional document offering the additional rights described in
+     an additional Attachment offering the additional rights described in
      Section 3.5.
 
      3.2. Availability of Source Code.
@@ -965,12 +965,12 @@ Version 1.1
 
      3.3. Description of Modifications.
      You must cause all Covered Code to which You contribute to contain a
-     file documenting the changes You made to create that Covered Code and
+     file Attachmenting the changes You made to create that Covered Code and
      the date of any change. You must include a prominent statement that
      the Modification is derived, directly or indirectly, from Original
      Code provided by the Initial Developer and including the name of the
      Initial Developer in (a) the Source Code, and (b) in any notice in an
-     Executable version or related documentation in which You describe the
+     Executable version or related Attachmentation in which You describe the
      origin or ownership of the Covered Code.
 
      3.4. Intellectual Property Matters
@@ -1009,7 +1009,7 @@ Version 1.1
      location (such as a relevant directory) where a user would be likely
      to look for such a notice.  If You created one or more Modification(s)
      You may add your name as a Contributor to the notice described in
-     Exhibit A.  You must also duplicate this License in any documentation
+     Exhibit A.  You must also duplicate this License in any Attachmentation
      for the Source Code where You describe recipients' rights or ownership
      rights relating to Covered Code.  You may choose to offer, and to
      charge a fee for, warranty, support, indemnity or liability
@@ -1029,7 +1029,7 @@ Version 1.1
      the Covered Code is available under the terms of this License,
      including a description of how and where You have fulfilled the
      obligations of Section 3.2. The notice must be conspicuously included
-     in any notice in an Executable version, related documentation or
+     in any notice in an Executable version, related Attachmentation or
      collateral in which You describe recipients' rights relating to the
      Covered Code. You may distribute the Executable version of Covered
      Code or ownership rights under a license of Your choice, which may
@@ -1183,7 +1183,7 @@ Version 1.1
 
      The Covered Code is a "commercial item," as that term is defined in
      48 C.F.R. 2.101 (Oct. 1995), consisting of "commercial computer
-     software" and "commercial computer software documentation," as such
+     software" and "commercial computer software Attachmentation," as such
      terms are used in 48 C.F.R. 12.212 (Sept. 1995). Consistent with 48
      C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4 (June 1995),
      all U.S. Government End Users acquire Covered Code with only those

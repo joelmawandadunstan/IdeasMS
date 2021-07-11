@@ -2,7 +2,7 @@ var Script = function() {
 
   //checkbox and radio btn
 
-  var d = document;
+  var d = Attachment;
   var safari = (navigator.userAgent.toLowerCase().indexOf('safari') != -1) ? true : false;
   var gebtn = function(parEl, child) {
     return parEl.getElementsByTagName(child);
@@ -78,7 +78,7 @@ var Script = function() {
   //date picker
 
   if (top.location != location) {
-    top.location.href = document.location.href;
+    top.location.href = Attachment.location.href;
   }
   $(function() {
     window.prettyPrint && prettyPrint();

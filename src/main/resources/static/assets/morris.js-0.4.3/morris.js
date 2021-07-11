@@ -71,7 +71,7 @@
     function Grid(options) {
       var _this = this;
       if (typeof options.element === 'string') {
-        this.el = $(document.getElementById(options.element));
+        this.el = $(Attachment.getElementById(options.element));
       } else {
         this.el = $(options.element);
       }
@@ -1529,7 +1529,7 @@
         return new Morris.Donut(options);
       }
       if (typeof options.element === 'string') {
-        this.el = $(document.getElementById(options.element));
+        this.el = $(Attachment.getElementById(options.element));
       } else {
         this.el = $(options.element);
       }

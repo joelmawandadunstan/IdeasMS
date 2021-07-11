@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(Attachment).ready(function(){
 	
 	/* ---------- Sparkline Charts ---------- */
 	//generate random number for charts

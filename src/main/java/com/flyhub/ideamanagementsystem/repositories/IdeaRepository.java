@@ -1,22 +1,16 @@
 package com.flyhub.ideamanagementsystem.repositories;
 
 import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import com.flyhub.ideamanagementsystem.entity.Idea;
+import com.flyhub.ideamanagementsystem.entity.IdeaEntity;
 
-public interface IdeaRepository extends JpaRepository<Idea, Long> {
-//public interface IdeaRepository extends PagingAndSortingRepository<Idea, Long>{
-	
-	@Query("SELECT i FROM Idea i WHERE " 
-			+ " CONCAT(i.id, '', i.idea_title, '', i.idea_description)"
-			+ " LIKE %?1%")
-	public Page<Idea> findAll(String keyword, Pageable pageable);
+@Repository
+public interface IdeaRepository extends JpaRepository<IdeaEntity, Long> {
+
+	@Query("SELECT i FROM IdeaEntity i WHERE " + " CONCAT(i.ideaId, '', i.ideaTitle, '', i.ideaDescription)" + " LIKE %?1%")
+	public List<IdeaEntity> findAll();
 
 }

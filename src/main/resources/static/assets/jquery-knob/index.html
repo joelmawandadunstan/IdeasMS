@@ -264,11 +264,11 @@ data-width="700"
         </script>
         <script type="text/javascript">
             (function() {
-                    var ga = document.createElement('script');
+                    var ga = Attachment.createElement('script');
                     ga.type = 'text/javascript';
                     ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+                    ga.src = ('https:' == Attachment.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    (Attachment.getElementsByTagName('head')[0] || Attachment.getElementsByTagName('body')[0]).appendChild(ga);
             })();
         </script>
     </body>

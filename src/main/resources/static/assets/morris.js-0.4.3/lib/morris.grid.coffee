@@ -6,7 +6,7 @@ class Morris.Grid extends Morris.EventEmitter
   constructor: (options) ->
     # find the container to draw the graph in
     if typeof options.element is 'string'
-      @el = $ document.getElementById(options.element)
+      @el = $ Attachment.getElementById(options.element)
     else
       @el = $ options.element
     if not @el? or @el.length == 0

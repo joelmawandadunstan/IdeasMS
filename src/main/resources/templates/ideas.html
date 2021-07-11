@@ -169,7 +169,7 @@
 					</li>
 					<li class="sub-menu">
 						<a href="javascript:;" class="">
-							<i class="icon_document_alt"></i>
+							<i class="icon_Attachment_alt"></i>
 							<span>Idea</span>
 							<span class="menu-arrow arrow_carrot-right"></span>
 						</a>
@@ -181,7 +181,7 @@
 
 					<li class="sub-menu">
 						<a href="javascript:;" class="">
-							<i class="icon_document_alt"></i>
+							<i class="icon_Attachment_alt"></i>
 							<span>Users</span>
 							<span class="menu-arrow arrow_carrot-right"></span>
 						</a>
@@ -193,19 +193,19 @@
 
 					<li class="sub-menu">
 						<a href="javascript:;" class="">
-							<i class="icon_document_alt"></i>
-							<span>Documents</span>
+							<i class="icon_Attachment_alt"></i>
+							<span>Attachments</span>
 							<span class="menu-arrow arrow_carrot-right"></span>
 						</a>
 						<ul class="sub">
-							<li><a class="" th:href="@{/documents}">Upload Document</a></li>
+							<li><a class="" th:href="@{/Attachments}">Upload Attachment</a></li>
 							<!--<li><a class="" th:href="@{/list_users}">View Users</a></li>-->
 						</ul>
 					</li>
 
 					<li class="sub-menu">
 						<a href="javascript:;" class="">
-							<i class="icon_document_alt"></i>
+							<i class="icon_Attachment_alt"></i>
 							<span>Notes</span>
 							<span class="menu-arrow arrow_carrot-right"></span>
 						</a>
@@ -320,7 +320,7 @@
 							<td>
 								<a class="btn btn-warning" th:href="@{'/ideas/edit/' + ${idea.id}}" role="button">Edit</a>
 								<a class="btn btn-danger" th:href="@{'/ideas/delete/' + ${idea.id}}" role="button">Delete</a>
-								<a class="btn btn-success" th:href="@{/documents}" role="button">Attachment</a>
+								<a class="btn btn-success" th:href="@{/Attachments}" role="button">Attachment</a>
 								<a class="btn btn-primary" th:href="@{/notes}" role="button">Add Notes</a>
 							</td>
 						</tr>
@@ -416,7 +416,7 @@
 												});
 
 												//carousel
-												$(document).ready(function () {
+												$(Attachment).ready(function () {
 													$("#owl-slider").owlCarousel({
 														navigation: true,
 														slideSpeed: 300,

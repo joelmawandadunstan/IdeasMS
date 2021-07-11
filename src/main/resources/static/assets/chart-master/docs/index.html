@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Chart.js Documentation</title>
+		<title>Chart.js Attachmentation</title>
 		<link href="styles.css" rel="stylesheet">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="prettify.js"></script>
@@ -20,7 +20,7 @@
 		</nav>
 		
 		<div id="contentWrapper">
-			<h1 id="mainHeader">Chart.js Documentation</h1>
+			<h1 id="mainHeader">Chart.js Attachmentation</h1>
 			<h2 id="introText">Everything you need to know to create great looking charts using Chart.js</h2>
 			<article id="gettingStarted">
 				<h1>Getting started</h1>
@@ -31,7 +31,7 @@
 				<p>To create a chart, we need to instantiate the Chart class. To do this, we need to pass in the 2d context of where we want to draw the chart. Here's an example.</p>
 				<pre data-type="html"><code>&lt;canvas id=&quot;myChart&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;</code></pre>
 				<pre data-type="javascript"><code>//Get the context of the canvas element we want to select
-var ctx = document.getElementById("myChart").getContext("2d");
+var ctx = Attachment.getElementById("myChart").getContext("2d");
 var myNewChart = new Chart(ctx).PolarArea(data);</code></pre>
 				<p>We can also get the context of our canvas with jQuery. To do this, we need to get the DOM node out of the jQuery collection, and call the <code>getContext("2d")</code> method on that.</p>
 				<pre data-type="javascript"><code>//Get context with jQuery - using jQuery's .get() method.
@@ -681,7 +681,7 @@ var myNewChart = new Chart(ctx);</code></pre>
 	</div>
 	</body>
 	<script>
-	$(document).ready(function(){
+	$(Attachment).ready(function(){
 	
 		var $nav = $("nav dl");
 		
@@ -757,9 +757,9 @@ var myNewChart = new Chart(ctx);</code></pre>
 	  _gaq.push(['_trackPageview']);
 	
 	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    var ga = Attachment.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == Attachment.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = Attachment.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 	
 	</script>

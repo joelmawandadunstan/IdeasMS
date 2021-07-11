@@ -164,7 +164,7 @@
 
             if (typeof options.locale.customRangeLabel === 'string'){
                 //Support unicode chars in the custom range name.
-                var elem = document.createElement('textarea');
+                var elem = Attachment.createElement('textarea');
                 elem.innerHTML = options.locale.customRangeLabel;
                 var rangeHtml = elem.value;
                 this.locale.customRangeLabel = rangeHtml;
@@ -337,7 +337,7 @@
                     continue;
 
                 //Support unicode chars in the range names.
-                var elem = document.createElement('textarea');
+                var elem = Attachment.createElement('textarea');
                 elem.innerHTML = range;
                 var rangeHtml = elem.value;
 
@@ -1105,7 +1105,7 @@
             this._outsideClickProxy = $.proxy(function(e) { this.outsideClick(e); }, this);
 
             // Bind global datepicker mousedown for hiding and
-            $(document)
+            $(Attachment)
               .on('mousedown.daterangepicker', this._outsideClickProxy)
               // also support mobile devices
               .on('touchend.daterangepicker', this._outsideClickProxy)
@@ -1144,7 +1144,7 @@
             //if picker is attached to a text input, update it
             this.updateElement();
 
-            $(document).off('.daterangepicker');
+            $(Attachment).off('.daterangepicker');
             $(window).off('.daterangepicker');
             this.container.hide();
             this.element.trigger('hide.daterangepicker', this);

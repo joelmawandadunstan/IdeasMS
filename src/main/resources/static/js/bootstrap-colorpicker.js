@@ -962,7 +962,7 @@ var Colorpicker = function () {
       if (this.options.inline !== false || this.options.container) {
         return false;
       }
-      var type = this.container && this.container[0] !== window.document.body ? 'position' : 'offset';
+      var type = this.container && this.container[0] !== window.Attachment.body ? 'position' : 'offset';
       var element = this.component || this.element;
       var offset = element[type]();
 
@@ -1007,7 +1007,7 @@ var Colorpicker = function () {
         }
       }
       if ((this.component || !this.input) && this.options.inline === false) {
-        (0, _jquery2.default)(window.document).on({
+        (0, _jquery2.default)(window.Attachment).on({
           'mousedown.colorpicker': _jquery2.default.proxy(this.hide, this)
         });
       }
@@ -1053,7 +1053,7 @@ var Colorpicker = function () {
       }
       this.picker.addClass('colorpicker-hidden').removeClass('colorpicker-visible');
       (0, _jquery2.default)(window).off('resize.colorpicker', this._reposition);
-      (0, _jquery2.default)(window.document).off({
+      (0, _jquery2.default)(window.Attachment).off({
         'mousedown.colorpicker': this.hide
       });
 
@@ -1582,12 +1582,12 @@ var Colorpicker = function () {
         };
 
         /**
-         * (window.document) Triggered on mousedown for the document object,
+         * (window.Attachment) Triggered on mousedown for the Attachment object,
          * so the color adjustment guide is moved to the clicked position.
          *
          * @event mousemove
          */
-        (0, _jquery2.default)(window.document).on({
+        (0, _jquery2.default)(window.Attachment).on({
           'mousemove.colorpicker': _jquery2.default.proxy(this._mousemove, this),
           'touchmove.colorpicker': _jquery2.default.proxy(this._mousemove, this),
           'mouseup.colorpicker': _jquery2.default.proxy(this._mouseup, this),
@@ -1651,7 +1651,7 @@ var Colorpicker = function () {
 
       e.stopPropagation();
       e.preventDefault();
-      (0, _jquery2.default)(window.document).off({
+      (0, _jquery2.default)(window.Attachment).off({
         'mousemove.colorpicker': this._mousemove,
         'touchmove.colorpicker': this._mousemove,
         'mouseup.colorpicker': this._mouseup,

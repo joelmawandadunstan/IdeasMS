@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(Attachment).ready(function() {
 
 
     var doughnutData = [
@@ -121,12 +121,12 @@ $(document).ready(function() {
         ]
 
     };
-    new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
-    new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-    new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
-    new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
-    new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
-    new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+    new Chart(Attachment.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
+    new Chart(Attachment.getElementById("line").getContext("2d")).Line(lineChartData);
+    new Chart(Attachment.getElementById("radar").getContext("2d")).Radar(radarChartData);
+    new Chart(Attachment.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
+    new Chart(Attachment.getElementById("bar").getContext("2d")).Bar(barChartData);
+    new Chart(Attachment.getElementById("pie").getContext("2d")).Pie(pieData);
 
 
 });

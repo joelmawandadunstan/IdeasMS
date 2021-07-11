@@ -17,7 +17,7 @@ if ( typeof Object.create !== "function" ) {
 		return new F();
 	};
 }
-(function( $, window, document, undefined ) {
+(function( $, window, Attachment, undefined ) {
 
 	var Carousel = {
 		init :function(options, el){
@@ -701,7 +701,7 @@ if ( typeof Object.create !== "function" ) {
 				var base = this;
 
 				var sTranslate3D = "translate3d(0px, 0px, 0px)";
-				 var eTemp = document.createElement("div");
+				 var eTemp = Attachment.createElement("div");
 				eTemp.style.cssText = "  -moz-transform:"    + sTranslate3D +
 									  "; -ms-transform:"     + sTranslate3D +
 									  "; -o-transform:"      + sTranslate3D +
@@ -716,7 +716,7 @@ if ( typeof Object.create !== "function" ) {
 
 		checkTouch : function(){
 			var base = this;
-			base.isTouch = ("ontouchstart" in document.documentElement);
+			base.isTouch = ("ontouchstart" in Attachment.AttachmentElement);
 		},
 
 		moveEvents : function(){
@@ -800,11 +800,11 @@ if ( typeof Object.create !== "function" ) {
 
 			function swapEvents(type){
 				if(type === "on"){
-					$(document).on(base.ev_types["move"], dragMove);
-					$(document).on(base.ev_types["end"], dragEnd);
+					$(Attachment).on(base.ev_types["move"], dragMove);
+					$(Attachment).on(base.ev_types["end"], dragEnd);
 				} else if(type === "off"){
-					$(document).off(base.ev_types["move"]);
-					$(document).off(base.ev_types["end"]);
+					$(Attachment).off(base.ev_types["move"]);
+					$(Attachment).off(base.ev_types["end"]);
 				}
 			}
 			function dragStart(event) {
@@ -855,7 +855,7 @@ if ( typeof Object.create !== "function" ) {
 				}
 
 				if((base.newPosY > 10 || base.newPosY < -10) && locals.sliding === false){
-					 $(document).off("touchmove.owl");
+					 $(Attachment).off("touchmove.owl");
 				}
 
 				var minSwipe = function(){
@@ -905,7 +905,7 @@ if ( typeof Object.create !== "function" ) {
 		clearEvents : function(){
 			var base = this;
 			base.$elem.off(".owl");
-			$(document).off(".owl");
+			$(Attachment).off(".owl");
 		},
 
 		getNewPosition : function(){
@@ -1112,4 +1112,4 @@ if ( typeof Object.create !== "function" ) {
 		afterMove: false,
 		afterAction : false
 	};
-})( jQuery, window, document );
+})( jQuery, window, Attachment );

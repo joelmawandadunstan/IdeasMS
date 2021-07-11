@@ -35,7 +35,7 @@ Fixed issues:
 * [#9686](http://dev.ckeditor.com/ticket/9686): Added missing contents styles for `<pre>`.
 * [#9709](http://dev.ckeditor.com/ticket/9709): PasteFromWord should not depend on configuration from other styles.
 * [#9726](http://dev.ckeditor.com/ticket/9726): Removed color dialog dependency from table tools.
-* [#9765](http://dev.ckeditor.com/ticket/9765): Toolbar Collapse command documented incorrectly on Accessibility Instructions dialog.
+* [#9765](http://dev.ckeditor.com/ticket/9765): Toolbar Collapse command Attachmented incorrectly on Accessibility Instructions dialog.
 * [#9771](http://dev.ckeditor.com/ticket/9771): [Webkit & Opera] Fixed scrolling issues when pasting.
 * [#9787](http://dev.ckeditor.com/ticket/9787): [IE9] onChange isn't fired for checkboxes in dialogs.
 * [#9842](http://dev.ckeditor.com/ticket/9842): [Firefox 17] When we open toolbar menu for the first time & press down arrow key, focus goes to next toolbar button instead of menu options.
@@ -51,6 +51,6 @@ The first stable release of the new CKEditor 4 code line.
 
 The CKEditor JavaScript API has been kept compatible with CKEditor 4, whenever
 possible. The list of relevant changes can be found in the [API Changes page of
-the CKEditor 4 documentation][1].
+the CKEditor 4 Attachmentation][1].
 
 [1]: http://docs.ckeditor.com/#!/guide/dev_api_changes "API Changes""

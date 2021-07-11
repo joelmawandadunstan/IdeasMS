@@ -410,7 +410,7 @@
 				[$(window), {
 					resize: $.proxy(this.place, this)
 				}],
-				[$(document), {
+				[$(Attachment), {
 					'mousedown touchstart': $.proxy(function(e){
 						// Clicked outside the datepicker, hide it
 						if (!(
@@ -473,7 +473,7 @@
 			this.picker.show();
 			this._attachSecondaryEvents();
 			this._trigger('show');
-			if ((window.navigator.msMaxTouchPoints || 'ontouchstart' in document) && this.o.disableTouchKeyboard) {
+			if ((window.navigator.msMaxTouchPoints || 'ontouchstart' in Attachment) && this.o.disableTouchKeyboard) {
 				$(this.element).blur();
 			}
 			return this;
@@ -658,7 +658,7 @@
 				visualPadding = 10,
 				container = $(this.o.container),
 				windowWidth = container.width(),
-				scrollTop = this.o.container === 'body' ? $(document).scrollTop() : container.scrollTop(),
+				scrollTop = this.o.container === 'body' ? $(Attachment).scrollTop() : container.scrollTop(),
 				appendOffset = container.offset();
 
 			var parentsZindex = [0];
@@ -2011,7 +2011,7 @@
 	/* DATEPICKER DATA-API
 	* ================== */
 
-	$(document).on(
+	$(Attachment).on(
 		'focus.datepicker.data-api click.datepicker.data-api',
 		'[data-provide="datepicker"]',
 		function(e){

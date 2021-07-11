@@ -155,11 +155,11 @@ rotateTimer = setTimeout(rotateChart, t);
     }());
 
 (function () {
-      var tt = document.createElement('div'),
+      var tt = Attachment.createElement('div'),
   leftOffset = -(~~$('html').css('padding-left').replace('px', '') + ~~$('body').css('margin-left').replace('px', '')),
   topOffset = -32;
 tt.className = 'ex-tooltip';
-document.body.appendChild(tt);
+Attachment.body.appendChild(tt);
 
       var data = {
   "xScale": "time",

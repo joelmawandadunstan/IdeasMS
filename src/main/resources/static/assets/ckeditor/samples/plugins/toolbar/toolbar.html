@@ -39,7 +39,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		<pre class="samples">
 CKEDITOR.replace( <em>'textarea_id'</em>, {
 	<strong>toolbar:</strong> [
-		{ name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+		{ name: 'Attachment', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
 		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
 		'/',																					// Line break - next group will be placed in new line.
 		{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
@@ -61,7 +61,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		<pre class="samples">
 CKEDITOR.replace( <em>'textarea_id'</em>, {
 	<strong>toolbarGroups:</strong> [
-		{ name: 'document',	   groups: [ 'mode', 'document' ] },			// Displays document group with its two subgroups.
+		{ name: 'Attachment',	   groups: [ 'mode', 'Attachment' ] },			// Displays Attachment group with its two subgroups.
  		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },			// Group's name will be used to create voice label.
  		'/',																// Line break - next group will be placed in new line.
  		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
@@ -101,13 +101,13 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		var editor = evt.editor,
 			editorCurrent = editor.name == 'editorCurrent',
 			defaultToolbar = !( editor.config.toolbar || editor.config.toolbarGroups ),
-			pre = CKEDITOR.document.getById( editor.name + 'Cfg' ),
+			pre = CKEDITOR.Attachment.getById( editor.name + 'Cfg' ),
 			output = '';
 
 		if ( editorCurrent ) {
 			// If default toolbar configuration has been modified, show "current toolbar" section.
 			if ( !defaultToolbar )
-				CKEDITOR.document.getById( 'currentToolbar' ).show();
+				CKEDITOR.Attachment.getById( 'currentToolbar' ).show();
 			else
 				return;
 		}

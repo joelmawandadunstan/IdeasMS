@@ -24,7 +24,7 @@
 *     * Redistributions of source code must retain the above copyright notice,
 *       this list of conditions and the following disclaimer.
 *     * Redistributions in binary form must reproduce the above copyright notice,
-*       this list of conditions and the following disclaimer in the documentation
+*       this list of conditions and the following disclaimer in the Attachmentation
 *       and/or other materials provided with the distribution.
 *     * Neither the name of Splunk Inc nor the names of its contributors may
 *       be used to endorse or promote products derived from this software without
@@ -96,7 +96,7 @@
 *   disableHighlight - If set to true then highlighting of selected chart elements on mouseover will be disabled
 *       defaults to false (highlights enabled)
 *   highlightLighten - Factor to lighten/darken highlighted chart values by - Defaults to 1.4 for a 40% increase
-*   tooltipContainer - Specify which DOM element the tooltip should be rendered into - defaults to document.body
+*   tooltipContainer - Specify which DOM element the tooltip should be rendered into - defaults to Attachment.body
 *   tooltipClassname - Optional CSS classname to apply to tooltips - If not specified then a default style will be applied
 *   tooltipOffsetX - How many pixels away from the mouse pointer to render the tooltip on the X axis
 *   tooltipOffsetY - How many pixels away from the mouse pointer to render the tooltip on the r axis
@@ -202,7 +202,7 @@
 
 /*jslint regexp: true, browser: true, jquery: true, white: true, nomen: false, plusplus: false, maxerr: 500, indent: 4 */
 
-(function(document, Math, undefined) { // performance/minified-size optimization
+(function(Attachment, Math, undefined) { // performance/minified-size optimization
 (function(factory) {
     if(typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -584,13 +584,13 @@
     addCSS = function(css) {
         var tag;
         //if ('\v' == 'v') /* ie only */ {
-        if (document.createStyleSheet) {
-            document.createStyleSheet().cssText = css;
+        if (Attachment.createStyleSheet) {
+            Attachment.createStyleSheet().cssText = css;
         } else {
-            tag = document.createElement('style');
+            tag = Attachment.createElement('style');
             tag.type = 'text/css';
-            document.getElementsByTagName('head')[0].appendChild(tag);
-            tag[(typeof document.body.style.WebkitAppearance == 'string') /* webkit only */ ? 'innerText' : 'innerHTML'] = css;
+            Attachment.getElementsByTagName('head')[0].appendChild(tag);
+            tag[(typeof Attachment.body.style.WebkitAppearance == 'string') /* webkit only */ ? 'innerText' : 'innerHTML'] = css;
         }
     };
 
@@ -607,15 +607,15 @@
 
         } else if ($.fn.sparkline.canvas === undefined) {
             // No function defined yet -- need to see if we support Canvas or VML
-            var el = document.createElement('canvas');
+            var el = Attachment.createElement('canvas');
             if (!!(el.getContext && el.getContext('2d'))) {
                 // Canvas is available
                 $.fn.sparkline.canvas = function(width, height, target, interact) {
                     return new VCanvas_canvas(width, height, target, interact);
                 };
-            } else if (document.namespaces && !document.namespaces.v) {
+            } else if (Attachment.namespaces && !Attachment.namespaces.v) {
                 // VML is available
-                document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
+                Attachment.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
                 $.fn.sparkline.canvas = function(width, height, target, interact) {
                     return new VCanvas_vml(width, height, target);
                 };
@@ -735,8 +735,8 @@
         },
 
         mouseenter: function (e) {
-            $(document.body).unbind('mousemove.jqs');
-            $(document.body).bind('mousemove.jqs', $.proxy(this.mousemove, this));
+            $(Attachment.body).unbind('mousemove.jqs');
+            $(Attachment.body).bind('mousemove.jqs', $.proxy(this.mousemove, this));
             this.over = true;
             this.currentPageX = e.pageX;
             this.currentPageY = e.pageY;
@@ -749,7 +749,7 @@
         },
 
         mouseleave: function () {
-            $(document.body).unbind('mousemove.jqs');
+            $(Attachment.body).unbind('mousemove.jqs');
             var splist = this.splist,
                  spcount = splist.length,
                  needsRefresh = false,
@@ -835,7 +835,7 @@
             var tooltipClassname = options.get('tooltipClassname', 'jqstooltip'),
                 sizetipStyle = this.sizeStyle,
                 offset;
-            this.container = options.get('tooltipContainer') || document.body;
+            this.container = options.get('tooltipContainer') || Attachment.body;
             this.tooltipOffsetX = options.get('tooltipOffsetX', 10);
             this.tooltipOffsetY = options.get('tooltipOffsetY', 12);
             // remove any previous lingering tooltip
@@ -963,7 +963,7 @@
                 if (options.get('height') === 'auto') {
                     if (!options.get('composite') || !$.data(this, '_jqs_vcanvas')) {
                         // must be a better way to get the line height
-                        tmp = document.createElement('span');
+                        tmp = Attachment.createElement('span');
                         tmp.innerHTML = 'a';
                         $this.html(tmp);
                         height = $(tmp).innerHeight() || $(tmp).height();
@@ -2699,7 +2699,7 @@
     VCanvas_canvas = createClass(VCanvas_base, {
         init: function (width, height, target, interact) {
             VCanvas_canvas._super.init.call(this, width, height, target);
-            this.canvas = document.createElement('canvas');
+            this.canvas = Attachment.createElement('canvas');
             if (target[0]) {
                 target = target[0];
             }
@@ -2897,7 +2897,7 @@
                 target = target[0];
             }
             $.data(target, '_jqs_vcanvas', this);
-            this.canvas = document.createElement('span');
+            this.canvas = Attachment.createElement('span');
             $(this.canvas).css({ display: 'inline-block', position: 'relative', overflow: 'hidden', width: width, height: height, margin: '0px', padding: '0px', verticalAlign: 'top'});
             this._insert(this.canvas, target);
             this._calculatePixelDims(width, height, this.canvas);
@@ -3054,4 +3054,4 @@
         }
     });
 
-}))}(document, Math));
+}))}(Attachment, Math));

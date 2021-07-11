@@ -15,16 +15,16 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 // its initialization.
 CKEDITOR.on( 'instanceReady', function( ev ) {
 	// Show the editor name and description in the browser status bar.
-	document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
+	Attachment.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
 
 	// Show this sample buttons.
-	document.getElementById( 'eButtons' ).style.display = 'block';
+	Attachment.getElementById( 'eButtons' ).style.display = 'block';
 });
 
 function InsertHTML() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
-	var value = document.getElementById( 'htmlArea' ).value;
+	var value = Attachment.getElementById( 'htmlArea' ).value;
 
 	// Check the active editing mode.
 	if ( editor.mode == 'wysiwyg' )
@@ -40,7 +40,7 @@ function InsertHTML() {
 function InsertText() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
-	var value = document.getElementById( 'txtArea' ).value;
+	var value = Attachment.getElementById( 'txtArea' ).value;
 
 	// Check the active editing mode.
 	if ( editor.mode == 'wysiwyg' )
@@ -56,7 +56,7 @@ function InsertText() {
 function SetContents() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
-	var value = document.getElementById( 'htmlArea' ).value;
+	var value = Attachment.getElementById( 'htmlArea' ).value;
 
 	// Set editor contents (replace current contents).
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
@@ -110,11 +110,11 @@ function Focus() {
 }
 
 function onFocus() {
-	document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+	Attachment.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
 }
 
 function onBlur() {
-	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
+	Attachment.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
 }
 
 	</script>
@@ -157,7 +157,7 @@ function onBlur() {
 
 					// Check for availability of corresponding plugins.
 					pluginsLoaded: function( evt ) {
-						var doc = CKEDITOR.document, ed = evt.editor;
+						var doc = CKEDITOR.Attachment, ed = evt.editor;
 						if ( !ed.getCommand( 'bold' ) )
 							doc.getById( 'exec-bold' ).hide();
 						if ( !ed.getCommand( 'link' ) )

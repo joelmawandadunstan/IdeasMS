@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.flyhub.ideamanagementsystem.entity.Idea;
+import com.flyhub.ideamanagementsystem.entity.IdeaEntity;
 import com.flyhub.ideamanagementsystem.service.IdeaServices;
 
 @RestController
@@ -22,12 +22,12 @@ public class IdeaController {
 	private IdeaServices ideaService;
 
 	@GetMapping
-	public List<Idea> viewIdeasList() {
+	public List<IdeaEntity> viewIdeasList() {
 		return ideaService.listAll();
 	}
 	
 	@PostMapping
-	public Idea processSubmission(@RequestBody Idea idea)  {
+	public IdeaEntity processSubmission(@RequestBody IdeaEntity idea)  {
 
 		return ideaService.submitIdea(idea);
 		
@@ -41,18 +41,9 @@ public class IdeaController {
 	
 	
 	@PatchMapping("/edit/{id}")
-	public Idea editIdeas(@PathVariable("id") Long id, @RequestBody Idea idea) {
+	public IdeaEntity editIdeas(@PathVariable("id") Long id, @RequestBody IdeaEntity idea) {
 		return ideaService.get(id, idea);
 
 		
 	}
-	
-//	@PostMapping("/save/")
-//	public Idea saveIdeaEdit(Idea idea) {
-//		return ideaService.saveUpdatedIdea(idea);
-//		
-//	}
-	
-
-
 }

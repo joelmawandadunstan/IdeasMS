@@ -27,7 +27,7 @@
 				if (options.activeToolbarClass) {
 					$(options.toolbarSelector).find(toolbarBtnSelector).each(function () {
 						var command = $(this).data(options.commandRole);
-						if (document.queryCommandState(command)) {
+						if (Attachment.queryCommandState(command)) {
 							$(this).addClass(options.activeToolbarClass);
 						} else {
 							$(this).removeClass(options.activeToolbarClass);
@@ -39,7 +39,7 @@
 				var commandArr = commandWithArgs.split(' '),
 					command = commandArr.shift(),
 					args = commandArr.join(' ') + (valueArg || '');
-				document.execCommand(command, 0, args);
+				Attachment.execCommand(command, 0, args);
 				updateToolbar();
 			},
 			bindHotkeys = function (hotKeys) {
@@ -73,8 +73,8 @@
 					try {
 						selection.removeAllRanges();
 					} catch (ex) {
-						document.body.createTextRange().select();
-						document.selection.empty();
+						Attachment.body.createTextRange().select();
+						Attachment.selection.empty();
 					}
 
 					selection.addRange(selectedRange);
@@ -96,8 +96,8 @@
 			},
 			markSelection = function (input, color) {
 				restoreSelection();
-				if (document.queryCommandSupported('hiliteColor')) {
-					document.execCommand('hiliteColor', 0, color || 'transparent');
+				if (Attachment.queryCommandSupported('hiliteColor')) {
+					Attachment.execCommand('hiliteColor', 0, color || 'transparent');
 				}
 				saveSelection();
 				input.data(options.selectionMarker, color);

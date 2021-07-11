@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(Attachment).ready(function($) {
   "use strict";
 
   //Contact

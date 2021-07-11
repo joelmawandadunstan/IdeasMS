@@ -122,7 +122,7 @@ function SmartWizard(target, options) {
 
         // Enable keyboard navigation
         if($this.options.keyNavigation){
-            $(document).keyup(function(e){
+            $(Attachment).keyup(function(e){
                 if(e.which==39){ // Right Arrow
                     $this.goForward();
                 }else if(e.which==37){ // Left Arrow

@@ -14,7 +14,7 @@ function randNum4(){
 	return ((Math.floor( Math.random()* (1+40-20) ) ) + 20) * 100;
 }
 
-$(document).ready(function(){
+$(Attachment).ready(function(){
 	
 	/* ---------- Chart with points ---------- */
 	if($("#dotChart").length)

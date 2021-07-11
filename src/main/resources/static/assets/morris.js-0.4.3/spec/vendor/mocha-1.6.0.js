@@ -1930,7 +1930,7 @@ function HTML(runner, root) {
     , progress
     , ctx
 
-  root = root || document.getElementById('mocha');
+  root = root || Attachment.getElementById('mocha');
 
   if (canvas.getContext) {
     var ratio = window.devicePixelRatio || 1;
@@ -1943,7 +1943,7 @@ function HTML(runner, root) {
     progress = new Progress;
   }
 
-  if (!root) return error('#mocha div missing, add it to your document');
+  if (!root) return error('#mocha div missing, add it to your Attachment');
 
   // pass toggle
   on(passesLink, 'click', function(){
@@ -1975,7 +1975,7 @@ function HTML(runner, root) {
 
     // container
     stack[0].appendChild(el);
-    stack.unshift(document.createElement('ul'));
+    stack.unshift(Attachment.createElement('ul'));
     el.appendChild(stack[0]);
   });
 
@@ -1989,7 +1989,7 @@ function HTML(runner, root) {
   });
 
   runner.on('test end', function(test){
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, Attachment.body.scrollHeight);
 
     // TODO: add to stats
     var percent = stats.tests / total * 100 | 0;
@@ -2052,7 +2052,7 @@ function HTML(runner, root) {
  */
 
 function error(msg) {
-  document.body.appendChild(fragment('<div id="error">%s</div>', msg));
+  Attachment.body.appendChild(fragment('<div id="error">%s</div>', msg));
 }
 
 /**
@@ -2061,7 +2061,7 @@ function error(msg) {
 
 function fragment(html) {
   var args = arguments
-    , div = document.createElement('div')
+    , div = Attachment.createElement('div')
     , i = 1;
 
   div.innerHTML = html.replace(/%([se])/g, function(_, type){
@@ -2080,7 +2080,7 @@ function fragment(html) {
  */
 
 function hideSuitesWithout(classname) {
-  var suites = document.getElementsByClassName('suite');
+  var suites = Attachment.getElementsByClassName('suite');
   for (var i = 0; i < suites.length; i++) {
     var els = suites[i].getElementsByClassName(classname);
     if (0 == els.length) suites[i].className += ' hidden';
@@ -2092,7 +2092,7 @@ function hideSuitesWithout(classname) {
  */
 
 function unhide() {
-  var els = document.getElementsByClassName('suite hidden');
+  var els = Attachment.getElementsByClassName('suite hidden');
   for (var i = 0; i < els.length; ++i) {
     els[i].className = els[i].className.replace('suite hidden', 'suite');
   }
@@ -4786,7 +4786,7 @@ function highlight(js) {
  */
 
 exports.highlightTags = function(name) {
-  var code = document.getElementsByTagName(name);
+  var code = Attachment.getElementsByTagName(name);
   for (var i = 0, len = code.length; i < len; ++i) {
     code[i].innerHTML = highlight(code[i].innerHTML);
   }

@@ -32,7 +32,7 @@
 // * Optimize. There is always room for speed improvements.
 
 // Only add this code if we do not already have a canvas implementation
-if (!document.createElement('canvas').getContext) {
+if (!Attachment.createElement('canvas').getContext) {
 
 (function() {
 
@@ -86,7 +86,7 @@ if (!document.createElement('canvas').getContext) {
   var G_vmlCanvasManager_ = {
     init: function(opt_doc) {
       if (/MSIE/.test(navigator.userAgent) && !window.opera) {
-        var doc = opt_doc || document;
+        var doc = opt_doc || Attachment;
         // Create a dummy element so that IE will allow canvas elements to be
         // recognized.
         doc.createElement('canvas');
@@ -106,7 +106,7 @@ if (!document.createElement('canvas').getContext) {
                            '#default#VML');
       }
 
-      // Setup default CSS.  Only add one style sheet per document
+      // Setup default CSS.  Only add one style sheet per Attachment
       if (!doc.styleSheets['ex_canvas_']) {
         var ss = doc.createStyleSheet();
         ss.owningElement.id = 'ex_canvas_';
@@ -303,7 +303,7 @@ if (!document.createElement('canvas').getContext) {
     this.globalAlpha = 1;
     this.canvas = surfaceElement;
 
-    var el = surfaceElement.ownerDocument.createElement('div');
+    var el = surfaceElement.ownerAttachment.createElement('div');
     el.style.width =  surfaceElement.clientWidth + 'px';
     el.style.height = surfaceElement.clientHeight + 'px';
     el.style.overflow = 'hidden';

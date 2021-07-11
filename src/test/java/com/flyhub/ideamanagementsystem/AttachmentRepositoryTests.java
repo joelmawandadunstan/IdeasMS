@@ -1,12 +1,10 @@
 package com.flyhub.ideamanagementsystem;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Date;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,37 +12,36 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
-
-import com.flyhub.ideamanagementsystem.entity.Document;
-import com.flyhub.ideamanagementsystem.repositories.DocumentRepository;
+import com.flyhub.ideamanagementsystem.entity.AttachmentEntity;
+import com.flyhub.ideamanagementsystem.repositories.AttachmentRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class DocumentRepositoryTests {
+public class AttachmentRepositoryTests {
 	
 	@Autowired
-	private DocumentRepository documentRepo;
+	private AttachmentRepository attachmentRepository;
 	
 	@Autowired
 	private TestEntityManager entityManager;
 	
 	@Test
 	@Rollback(false)
-	public void testInsertDocument() throws IOException {
-		File file = new File("C:\\Users\\A241902\\Documents\\FlyHub.docx");
+	public void testInsertAttachment() throws IOException {
+		File file = new File("C:\\Users\\A241902\\documents\\FlyHub.docx");
 		
-		Document document = new Document();
-		document.setName(file.getName());
+		AttachmentEntity attachment = new AttachmentEntity();
+		attachment.setName(file.getName());
 		
 		byte[] bytes = Files.readAllBytes(file.toPath());
-		document.setContent(bytes);
+		attachment.setContent(bytes);
 		long fileSize = bytes.length;
-		document.setSize(fileSize);
-		document.setUploadTime(new Date());
+		attachment.setSize(fileSize);
+		attachment.setUploadTime(new Date());
 		
-		Document savedDoc = documentRepo.save(document);
+		AttachmentEntity savedDoc = attachmentRepository.save(attachment);
 		
-		Document existDoc = entityManager.find(Document.class, savedDoc.getId());
+		AttachmentEntity existDoc = entityManager.find(AttachmentEntity.class, savedDoc.getAttachmentId());
 		
 		assertThat(existDoc.getSize()).isEqualTo(fileSize);
 	}

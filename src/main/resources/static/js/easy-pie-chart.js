@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(Attachment).ready(function() {
 
     // easy pie chart
     $('.percentage').easyPieChart({

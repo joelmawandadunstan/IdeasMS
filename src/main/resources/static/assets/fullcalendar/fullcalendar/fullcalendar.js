@@ -650,7 +650,7 @@ function Calendar(element, options, eventSources) {
 	------------------------------------------------------------------------*/
 	
 	if (options.droppable) {
-		$(document)
+		$(Attachment)
 			.bind('dragstart', function(ev, ui) {
 				var _e = ev.target;
 				var e = $(_e);
@@ -3548,7 +3548,7 @@ function AgendaView(element, calendar, viewName) {
 					dates = null;
 				}
 			}, ev);
-			$(document).one('mouseup', function(ev) {
+			$(Attachment).one('mouseup', function(ev) {
 				hoverListener.stop();
 				if (dates) {
 					if (+dates[0] == +dates[1]) {
@@ -4978,7 +4978,7 @@ function SelectionManager() {
 
 	// unselectAuto
 	if (opt('selectable') && opt('unselectAuto')) {
-		$(document).mousedown(function(ev) {
+		$(Attachment).mousedown(function(ev) {
 			var ignore = opt('unselectCancel');
 			if (ignore) {
 				if ($(ev.target).parents(ignore).length) { // could be optimized to stop after first match
@@ -5033,7 +5033,7 @@ function SelectionManager() {
 					dates = null;
 				}
 			}, ev);
-			$(document).one('mouseup', function(ev) {
+			$(Attachment).one('mouseup', function(ev) {
 				hoverListener.stop();
 				if (dates) {
 					if (+dates[0] == +dates[1]) {
@@ -5147,7 +5147,7 @@ function HoverListener(coordinateGrid) {
 		coordinateGrid.build();
 		mouse(ev);
 		bindType = _bindType || 'mousemove';
-		$(document).bind(bindType, mouse);
+		$(Attachment).bind(bindType, mouse);
 	};
 	
 	
@@ -5169,7 +5169,7 @@ function HoverListener(coordinateGrid) {
 	
 	
 	t.stop = function() {
-		$(document).unbind(bindType, mouse);
+		$(Attachment).unbind(bindType, mouse);
 		return cell;
 	};
 	

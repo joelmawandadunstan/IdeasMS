@@ -1,8 +1,10 @@
 package com.flyhub.ideamanagementsystem.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.flyhub.ideamanagementsystem.entity.Priority;
+import org.springframework.stereotype.Repository;
+import com.flyhub.ideamanagementsystem.entity.PriorityEntity;
 
-public interface PriorityRepository extends JpaRepository<Priority,Long> {
+@Repository
+public interface PriorityRepository extends JpaRepository<PriorityEntity, Long>{
 
 }

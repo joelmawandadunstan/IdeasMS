@@ -31,7 +31,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // ============================================================
 
   function transitionEnd() {
-    var el = document.createElement('bootstrap')
+    var el = Attachment.createElement('bootstrap')
 
     var transEndEventNames = {
       'WebkitTransition' : 'webkitTransitionEnd'
@@ -157,7 +157,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // ALERT DATA-API
   // ==============
 
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+  $(Attachment).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
 }(window.jQuery);
 
@@ -262,7 +262,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // BUTTON DATA-API
   // ===============
 
-  $(document).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
+  $(Attachment).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
     var $btn = $(e.target)
     if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
     $btn.button('toggle')
@@ -464,7 +464,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // CAROUSEL DATA-API
   // =================
 
-  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+  $(Attachment).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
     var $this   = $(this), href
     var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
     var options = $.extend({}, $target.data(), $this.data())
@@ -648,7 +648,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // COLLAPSE DATA-API
   // =================
 
-  $(document).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
+  $(Attachment).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
     var $this   = $(this), href
     var target  = $this.attr('data-target')
         || e.preventDefault()
@@ -711,7 +711,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     clearMenus()
 
     if (!isActive) {
-      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+      if ('ontouchstart' in Attachment.AttachmentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we we use a backdrop because click events don't delegate
         $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
       }
@@ -816,7 +816,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // APPLY TO STANDARD DROPDOWN ELEMENTS
   // ===================================
 
-  $(document)
+  $(Attachment)
     .on('click.bs.dropdown.data-api', clearMenus)
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
@@ -886,7 +886,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       var transition = $.support.transition && that.$element.hasClass('fade')
 
       if (!that.$element.parent().length) {
-        that.$element.appendTo(document.body) // don't move modals dom position
+        that.$element.appendTo(Attachment.body) // don't move modals dom position
       }
 
       that.$element.show()
@@ -926,7 +926,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     this.escape()
 
-    $(document).off('focusin.bs.modal')
+    $(Attachment).off('focusin.bs.modal')
 
     this.$element
       .removeClass('in')
@@ -941,7 +941,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   }
 
   Modal.prototype.enforceFocus = function () {
-    $(document)
+    $(Attachment)
       .off('focusin.bs.modal') // guard against infinite focus loop
       .on('focusin.bs.modal', $.proxy(function (e) {
         if (this.$element[0] !== e.target && !this.$element.has(e.target).length) {
@@ -982,7 +982,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-        .appendTo(document.body)
+        .appendTo(Attachment.body)
 
       this.$element.on('click.dismiss.modal', $.proxy(function (e) {
         if (e.target !== e.currentTarget) return
@@ -1050,7 +1050,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // MODAL DATA-API
   // ==============
 
-  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+  $(Attachment).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
     var $this   = $(this)
     var href    = $this.attr('href')
     var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
@@ -1065,9 +1065,9 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       })
   })
 
-  $(document)
-    .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
-    .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
+  $(Attachment)
+    .on('show.bs.modal',  '.modal', function () { $(Attachment.body).addClass('modal-open') })
+    .on('hidden.bs.modal', '.modal', function () { $(Attachment.body).removeClass('modal-open') })
 
 }(window.jQuery);
 
@@ -1242,7 +1242,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
         var $parent = this.$element.parent()
 
         var orgPlacement = placement
-        var docScroll    = document.documentElement.scrollTop || document.body.scrollTop
+        var docScroll    = Attachment.AttachmentElement.scrollTop || Attachment.body.scrollTop
         var parentWidth  = this.options.container == 'body' ? window.innerWidth  : $parent.outerWidth()
         var parentHeight = this.options.container == 'body' ? window.innerHeight : $parent.outerHeight()
         var parentLeft   = this.options.container == 'body' ? 0 : $parent.offset().left
@@ -1864,7 +1864,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // TAB DATA-API
   // ============
 
-  $(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+  $(Attachment).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
     e.preventDefault()
     $(this).tab('show')
   })
@@ -1922,7 +1922,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   Affix.prototype.checkPosition = function () {
     if (!this.$element.is(':visible')) return
 
-    var scrollHeight = $(document).height()
+    var scrollHeight = $(Attachment).height()
     var scrollTop    = this.$window.scrollTop()
     var position     = this.$element.offset()
     var offset       = this.options.offset
@@ -1946,7 +1946,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     this.$element.removeClass(Affix.RESET).addClass('affix' + (affix ? '-' + affix : ''))
 
     if (affix == 'bottom') {
-      this.$element.offset({ top: document.body.offsetHeight - offsetBottom - this.$element.height() })
+      this.$element.offset({ top: Attachment.body.offsetHeight - offsetBottom - this.$element.height() })
     }
   }
 

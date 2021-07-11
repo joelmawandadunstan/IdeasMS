@@ -24,8 +24,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			// Create the editor again, with the appropriate settings.
 			editor = CKEDITOR.replace( 'editor1', {
 				extraPlugins: 'enterkey',
-				enterMode: Number( document.getElementById( 'xEnter' ).value ),
-				shiftEnterMode: Number( document.getElementById( 'xShiftEnter' ).value )
+				enterMode: Number( Attachment.getElementById( 'xEnter' ).value ),
+				shiftEnterMode: Number( Attachment.getElementById( 'xShiftEnter' ).value )
 			});
 		}
 

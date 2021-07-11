@@ -15,7 +15,7 @@
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright notice,
- *       this list of conditions and the following disclaimer in the documentation
+ *       this list of conditions and the following disclaimer in the Attachmentation
  *       and/or other materials provided with the distribution.
  *     * Neither the name of Christian Johansen nor the names of his contributors
  *       may be used to endorse or promote products derived from this software
@@ -38,7 +38,7 @@ var sinon = (function () {
 
 var buster = (function (setTimeout, B) {
     var isNode = typeof require == "function" && typeof module == "object";
-    var div = typeof document != "undefined" && document.createElement("div");
+    var div = typeof Attachment != "undefined" && Attachment.createElement("div");
     var F = function () {};
 
     var buster = {
@@ -277,8 +277,8 @@ buster.format.ascii = (function () {
     if (typeof global != "undefined") {
         specialObjects.push({ obj: global, value: "[object global]" });
     }
-    if (typeof document != "undefined") {
-        specialObjects.push({ obj: document, value: "[object HTMLDocument]" });
+    if (typeof Attachment != "undefined") {
+        specialObjects.push({ obj: Attachment, value: "[object HTMLAttachment]" });
     }
     if (typeof window != "undefined") {
         specialObjects.push({ obj: window, value: "[object Window]" });
@@ -456,7 +456,7 @@ if (typeof module != "undefined") {
     module.exports = buster.format;
 }
 /*jslint eqeqeq: false, onevar: false, forin: true, nomen: false, regexp: false, plusplus: false*/
-/*global module, require, __dirname, document*/
+/*global module, require, __dirname, Attachment*/
 /**
  * Sinon core utilities. For internal use only.
  *
@@ -467,7 +467,7 @@ if (typeof module != "undefined") {
  */
 
 var sinon = (function (buster) {
-    var div = typeof document != "undefined" && document.createElement("div");
+    var div = typeof Attachment != "undefined" && Attachment.createElement("div");
     var hasOwn = Object.prototype.hasOwnProperty;
 
     function isDOMNode(obj) {
@@ -3154,7 +3154,7 @@ sinon.xhr = { XMLHttpRequest: this.XMLHttpRequest };
             }
         },
 
-        // Currently treats ALL data as a DOMString (i.e. no Document)
+        // Currently treats ALL data as a DOMString (i.e. no Attachment)
         send: function send(data) {
             verifyState(this);
 

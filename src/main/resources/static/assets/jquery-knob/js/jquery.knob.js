@@ -27,7 +27,7 @@
         min = Math.min;
 
     k.c = {};
-    k.c.d = $(document);
+    k.c.d = $(Attachment);
     k.c.t = function (e) {
         return e.originalEvent.touches.length - 1;
     };
@@ -184,7 +184,7 @@
 
             // canvas pre-rendering
             var d = true,
-                c = document.createElement('canvas');
+                c = Attachment.createElement('canvas');
 
             c.width = s.o.width;
             c.height = s.o.height;

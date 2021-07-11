@@ -18,7 +18,7 @@
             overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
           });
           /* voiceBtn
-          if ("onwebkitspeechchange"  in document.createElement("input")) {
+          if ("onwebkitspeechchange"  in Attachment.createElement("input")) {
             var editorOffset = $('#editor').offset();
             $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
           } else {

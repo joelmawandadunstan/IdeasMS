@@ -88,6 +88,6 @@ function initializeJS() {
 
 }
 
-jQuery(document).ready(function(){
+jQuery(Attachment).ready(function(){
     initializeJS();
 });

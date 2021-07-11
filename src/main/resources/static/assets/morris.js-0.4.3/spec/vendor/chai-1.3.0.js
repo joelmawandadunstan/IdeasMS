@@ -2357,7 +2357,7 @@
       };
 
       /*!
-       * Undocumented / untested
+       * UnAttachmented / untested
        */
 
       assert.ifError = function (val, msg) {
@@ -2928,7 +2928,7 @@
      * ### Paths:
      *
      * * Can be as near infinitely deep and nested
-     * * Arrays are also valid using the formal `myobject.document[3].property`.
+     * * Arrays are also valid using the formal `myobject.Attachment[3].property`.
      *
      * @param {String} path
      * @returns {Object} parsed
@@ -3118,11 +3118,11 @@
     var getOuterHTML = function(element) {
       if ('outerHTML' in element) return element.outerHTML;
       var ns = "http://www.w3.org/1999/xhtml";
-      var container = document.createElementNS(ns, '_');
+      var container = Attachment.createElementNS(ns, '_');
       var elemProto = (window.HTMLElement || window.Element).prototype;
       var xmlSerializer = new XMLSerializer();
       var html;
-      if (document.xmlVersion) {
+      if (Attachment.xmlVersion) {
         return xmlSerializer.serializeToString(element);
       } else {
         container.appendChild(element.cloneNode(false));

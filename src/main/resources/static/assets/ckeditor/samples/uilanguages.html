@@ -51,17 +51,17 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			Available languages (<span id="count"> </span> languages!):<br>
 			<script>
 
-				document.write( '<select disabled="disabled" id="languages" onchange="createEditor( this.value );">' );
+				Attachment.write( '<select disabled="disabled" id="languages" onchange="createEditor( this.value );">' );
 
 				// Get the language list from the _languages.js file.
 				for ( var i = 0 ; i < window.CKEDITOR_LANGS.length ; i++ ) {
-					document.write(
+					Attachment.write(
 						'<option value="' + window.CKEDITOR_LANGS[i].code + '">' +
 							window.CKEDITOR_LANGS[i].name +
 						'</option>' );
 				}
 
-				document.write( '</select>' );
+				Attachment.write( '</select>' );
 
 			</script>
 			<br>
@@ -74,7 +74,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			<script>
 
 				// Set the number of languages.
-				document.getElementById( 'count' ).innerHTML = window.CKEDITOR_LANGS.length;
+				Attachment.getElementById( 'count' ).innerHTML = window.CKEDITOR_LANGS.length;
 
 				var editor;
 
@@ -91,7 +91,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 							instanceReady: function() {
 								// Wait for the editor to be ready to set
 								// the language combo.
-								var languages = document.getElementById( 'languages' );
+								var languages = Attachment.getElementById( 'languages' );
 								languages.value = this.langCode;
 								languages.disabled = false;
 							}

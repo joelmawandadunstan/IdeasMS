@@ -9,7 +9,7 @@
  * @version        1.0.0
  * @since          2010.07.03
  * @author         Washington Botelho
- * @documentation  wbotelhos.com/stepy
+ * @Attachmentation  wbotelhos.com/stepy
  * @twitter        twitter.com/wbotelhos
  * 
  * Usage with default values:

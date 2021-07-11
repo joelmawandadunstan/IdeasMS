@@ -33,7 +33,7 @@ class Morris.Donut extends Morris.EventEmitter
       return new Morris.Donut(options)
 
     if typeof options.element is 'string'
-      @el = $ document.getElementById(options.element)
+      @el = $ Attachment.getElementById(options.element)
     else
       @el = $ options.element
 

@@ -77,8 +77,8 @@ window.onload = function() {
 			'icon_ol' : '&#x65;',
 			'icon_adjust-horiz' : '&#x66;',
 			'icon_adjust-vert' : '&#x67;',
-			'icon_document_alt' : '&#x68;',
-			'icon_documents_alt' : '&#x69;',
+			'icon_Attachment_alt' : '&#x68;',
+			'icon_Attachments_alt' : '&#x69;',
 			'icon_pencil' : '&#x6a;',
 			'icon_pencil-edit_alt' : '&#x6b;',
 			'icon_pencil-edit' : '&#x6c;',
@@ -188,8 +188,8 @@ window.onload = function() {
 			'icon_stop_alt' : '&#xe055;',
 			'icon_menu-square_alt' : '&#xe056;',
 			'icon_menu-circle_alt' : '&#xe057;',
-			'icon_document' : '&#xe058;',
-			'icon_documents' : '&#xe059;',
+			'icon_Attachment' : '&#xe058;',
+			'icon_Attachments' : '&#xe059;',
 			'icon_pencil_alt' : '&#xe05a;',
 			'icon_folder' : '&#xe05b;',
 			'icon_folder-open' : '&#xe05c;',
@@ -367,7 +367,7 @@ window.onload = function() {
 			'icon_globe_alt' : '&#xe0de;',
 			'icon_clipboard' : '&#xe0e6;'
 		},
-		els = document.getElementsByTagName('*'),
+		els = Attachment.getElementsByTagName('*'),
 		i, attr, c, el;
 	for (i = 0; ; i += 1) {
 		el = els[i];

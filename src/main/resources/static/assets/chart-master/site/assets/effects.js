@@ -126,33 +126,33 @@ $(window).load(function() {
 		setIntroChart();
 		
 		function setIntroChart(){		
-			var ctx = document.getElementById("introChart").getContext("2d");
+			var ctx = Attachment.getElementById("introChart").getContext("2d");
 			
 			new Chart(ctx).Line(lineChartData,{animation: Modernizr.canvas, scaleShowLabels : false, scaleFontColor : "#767C8D"});
 		};
 		
 		function showLineChart(){
-			var ctx = document.getElementById("lineChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("lineChartCanvas").getContext("2d");
 			new Chart(ctx).Line(lineChartData,globalGraphSettings);
 		};
 		function showBarChart(){
-			var ctx = document.getElementById("barChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("barChartCanvas").getContext("2d");
 			new Chart(ctx).Bar(barChartData,globalGraphSettings);
 		};
 		function showRadarChart(){
-			var ctx = document.getElementById("radarChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("radarChartCanvas").getContext("2d");
 			new Chart(ctx).Radar(radarChartData,globalGraphSettings);
 		}
 		function showPolarAreaChart(){
-			var ctx = document.getElementById("polarAreaChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("polarAreaChartCanvas").getContext("2d");
 			new Chart(ctx).PolarArea(polarAreaChartData,globalGraphSettings);			
 		}
 		function showPieChart(){
-			var ctx = document.getElementById("pieChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("pieChartCanvas").getContext("2d");
 			new Chart(ctx).Pie(pieChartData,globalGraphSettings);
 		};
 		function showDoughnutChart(){
-			var ctx = document.getElementById("doughnutChartCanvas").getContext("2d");
+			var ctx = Attachment.getElementById("doughnutChartCanvas").getContext("2d");
 			new Chart(ctx).Doughnut(doughnutChartData,globalGraphSettings);
 		};
 		
@@ -200,7 +200,7 @@ $(window).load(function() {
 	 */
 	(function ($) {
 	  var inviewObjects = {}, viewportSize, viewportOffset,
-	      d = document, w = window, documentElement = d.documentElement, expando = $.expando;
+	      d = Attachment, w = window, AttachmentElement = d.AttachmentElement, expando = $.expando;
 	
 	  $.event.special.inview = {
 	    add: function(data) {
@@ -221,7 +221,7 @@ $(window).load(function() {
 	      mode = d.compatMode;
 	      if (mode || !$.support.boxModel) { // IE, Gecko
 	        domObject = mode === 'CSS1Compat' ?
-	          documentElement : // Standards
+	          AttachmentElement : // Standards
 	          d.body; // Quirks
 	        size = {
 	          height: domObject.clientHeight,
@@ -235,8 +235,8 @@ $(window).load(function() {
 	
 	  function getViewportOffset() {
 	    return {
-	      top:  w.pageYOffset || documentElement.scrollTop   || d.body.scrollTop,
-	      left: w.pageXOffset || documentElement.scrollLeft  || d.body.scrollLeft
+	      top:  w.pageYOffset || AttachmentElement.scrollTop   || d.body.scrollTop,
+	      left: w.pageXOffset || AttachmentElement.scrollLeft  || d.body.scrollLeft
 	    };
 	  }
 	
@@ -256,7 +256,7 @@ $(window).load(function() {
 	
 	      for (; i<elementsLength; i++) {
 	        // Ignore elements that are not in the DOM tree
-	        if (!$.contains(documentElement, $elements[i])) {
+	        if (!$.contains(AttachmentElement, $elements[i])) {
 	          continue;
 	        }
 	
@@ -303,8 +303,8 @@ $(window).load(function() {
 	  });
 	  
 	  // IE < 9 scrolls to focused elements without firing the "scroll" event
-	  if (!documentElement.addEventListener && documentElement.attachEvent) {
-	    documentElement.attachEvent("onfocusin", function() {
+	  if (!AttachmentElement.addEventListener && AttachmentElement.attachEvent) {
+	    AttachmentElement.attachEvent("onfocusin", function() {
 	      viewportOffset = null;
 	    });
 	  }

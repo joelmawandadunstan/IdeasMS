@@ -32,7 +32,7 @@
 // * Optimize. There is always room for speed improvements.
 
 // Only add this code if we do not already have a canvas implementation
-if (!document.createElement('canvas').getContext) {
+if (!Attachment.createElement('canvas').getContext) {
 
 (function() {
 
@@ -99,7 +99,7 @@ if (!document.createElement('canvas').getContext) {
     addNamespace(doc, 'g_vml_', 'urn:schemas-microsoft-com:vml');
     addNamespace(doc, 'g_o_', 'urn:schemas-microsoft-com:office:office');
 
-    // Setup default CSS.  Only add one style sheet per document
+    // Setup default CSS.  Only add one style sheet per Attachment
     if (!doc.styleSheets['ex_canvas_']) {
       var ss = doc.createStyleSheet();
       ss.owningElement.id = 'ex_canvas_';
@@ -110,11 +110,11 @@ if (!document.createElement('canvas').getContext) {
   }
 
   // Add namespaces and stylesheet at startup.
-  addNamespacesAndStylesheet(document);
+  addNamespacesAndStylesheet(Attachment);
 
   var G_vmlCanvasManager_ = {
     init: function(opt_doc) {
-      var doc = opt_doc || document;
+      var doc = opt_doc || Attachment;
       // Create a dummy element so that IE will allow canvas elements to be
       // recognized.
       doc.createElement('canvas');
@@ -141,8 +141,8 @@ if (!document.createElement('canvas').getContext) {
       if (!el.getContext) {
         el.getContext = getContext;
 
-        // Add namespaces and stylesheet to document of the element.
-        addNamespacesAndStylesheet(el.ownerDocument);
+        // Add namespaces and stylesheet to Attachment of the element.
+        addNamespacesAndStylesheet(el.ownerAttachment);
 
         // Remove fallback content. There is no way to hide text nodes so we
         // just remove all childNodes. We could hide all elements and remove
@@ -497,7 +497,7 @@ if (!document.createElement('canvas').getContext) {
       return fontStyleCache[styleString];
     }
 
-    var el = document.createElement('div');
+    var el = Attachment.createElement('div');
     var style = el.style;
     try {
       style.font = styleString;
@@ -589,7 +589,7 @@ if (!document.createElement('canvas').getContext) {
 
     var cssText = 'width:' + canvasElement.clientWidth + 'px;height:' +
         canvasElement.clientHeight + 'px;overflow:hidden;position:absolute';
-    var el = canvasElement.ownerDocument.createElement('div');
+    var el = canvasElement.ownerAttachment.createElement('div');
     el.style.cssText = cssText;
     canvasElement.appendChild(el);
 
@@ -1307,7 +1307,7 @@ if (!document.createElement('canvas').getContext) {
       this.element_.insertAdjacentHTML('beforeEnd', s);
       this.textMeasureEl_ = this.element_.lastChild;
     }
-    var doc = this.element_.ownerDocument;
+    var doc = this.element_.ownerAttachment;
     this.textMeasureEl_.innerHTML = '';
     this.textMeasureEl_.style.font = this.font;
     // Don't use innerHTML or innerText because they allow markup/whitespace.
@@ -1390,7 +1390,7 @@ if (!document.createElement('canvas').getContext) {
   p.INDEX_SIZE_ERR = 1;
   p.DOMSTRING_SIZE_ERR = 2;
   p.HIERARCHY_REQUEST_ERR = 3;
-  p.WRONG_DOCUMENT_ERR = 4;
+  p.WRONG_Attachment_ERR = 4;
   p.INVALID_CHARACTER_ERR = 5;
   p.NO_DATA_ALLOWED_ERR = 6;
   p.NO_MODIFICATION_ALLOWED_ERR = 7;
